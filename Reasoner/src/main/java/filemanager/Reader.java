@@ -7,16 +7,11 @@ import java.io.File;
 
 public class Reader implements FileReader{
 
-    public Reader() {}
+    public Reader(){}
     @Override
     public OWLOntology read(String path2file) throws OWLOntologyCreationException {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
         File ontologyFile = new File(path2file);
-        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(ontologyFile);
-        System.out.println(ontology.axioms().count());
-        return ontology;
+        return manager.loadOntologyFromOntologyDocument(ontologyFile);
     }
-
-
-
 }

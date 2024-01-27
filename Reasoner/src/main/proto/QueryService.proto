@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "network";
+option java_multiple_files = true;
+option java_outer_classname = "QueryServiceProto";
+option objc_class_prefix = "QS";
+
+service QueryService{
+  rpc receiveQuery(QueryRequest) returns(QueryResponse) {}
+  rpc sendQuery(Empty) returns(QueryRequest){}
+
+}
+
+message QueryRequest{
+  string query = 1;
+}
+
+message QueryResponse{
+  repeated string response = 1;
+}
+
+message Empty{}
