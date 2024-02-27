@@ -66,14 +66,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-footer {
-  background-color: gray;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 30px;
-  width: 100%;
-  overflow: hidden;
-  text-align: center;
-}

@@ -2,15 +2,99 @@ package reasoner;
 
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
+import org.semanticweb.owlapi.reasoner.impl.*;
+import org.semanticweb.owlapi.search.EntitySearcher;
 import org.semanticweb.owlapi.util.Version;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Reasoner implements OWLReasoner {
+
+
+    private OWLOntology ontology;
+    private OWLDataFactory factory;
+
+    public Reasoner(OWLOntology ontology){
+        this.ontology = ontology;
+        this.factory = ontology.getOWLOntologyManager().getOWLDataFactory();
+    }
+
+    // __________________ INDIVIDUALS ______________________________
+    @Override
+    public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean b) {
+        DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
+        var namedIndividuals = ontology.getIndividualsInSignature();
+        for(OWLNamedIndividual ind : namedIndividuals){
+            Set<OWLClassExpression> expr = ontology.classAssertionAxioms(ind)
+                    .map(OWLClassAssertionAxiom::getClassExpression)
+                    .collect(Collectors.toSet());
+            switch (owlClassExpression.getClassExpressionType()){
+                case OWL_CLASS -> {if(expr.contains(owlClassExpression)) result.addEntity(ind);}
+                case OBJECT_INTERSECTION_OF -> {if(expr.containsAll(owlClassExpression.asConjunctSet())) result.addEntity(ind);}
+                case OBJECT_UNION_OF -> {if(expr.stream().anyMatch(i->owlClassExpression.asDisjunctSet().contains(i))) result.addEntity(ind);}
+            }
+        }
+        return result;
+    }
+
+
+    @Override
+    public NodeSet<OWLClass> getTypes(OWLNamedIndividual owlNamedIndividual, boolean b) {
+        DefaultNodeSet<OWLClass> classes = new OWLClassNodeSet();
+        Set<OWLClass> cls = ontology.classAssertionAxioms(owlNamedIndividual)
+                .map(OWLClassAssertionAxiom::getClassExpression)
+                .map(AsOWLClass::asOWLClass)
+                .collect(Collectors.toSet());
+        for(OWLClass cl : cls){
+            classes.addEntity(cl);
+        }
+        return classes;
+    }
+
+
+
+
+    @Override
+    public NodeSet<OWLNamedIndividual> getObjectPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLObjectPropertyExpression owlObjectPropertyExpression) {
+        return null;
+    }
+
+    @Override
+    public Set<OWLLiteral> getDataPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLDataProperty owlDataProperty) {
+        return null;
+    }
+
+    @Override
+    public Node<OWLNamedIndividual> getSameIndividuals(OWLNamedIndividual owlNamedIndividual) {
+        return null;
+    }
+
+    @Override
+    public NodeSet<OWLNamedIndividual> getDifferentIndividuals(OWLNamedIndividual owlNamedIndividual) {
+        return null;
+    }
+
+
+    @Override
+    public void precomputeInferences(InferenceType... inferenceTypes) {
+
+    }
+
+    @Override
+    public boolean isSatisfiable(OWLClassExpression owlClassExpression) {
+        return false;
+    }
+
+
+
     @Override
     public String getReasonerName() {
-        return null;
+        return "SSWR";
     }
 
     @Override
@@ -53,10 +137,7 @@ public class Reasoner implements OWLReasoner {
 
     }
 
-    @Override
-    public void precomputeInferences(InferenceType... inferenceTypes) {
 
-    }
 
     @Override
     public boolean isPrecomputed(InferenceType inferenceType) {
@@ -73,10 +154,7 @@ public class Reasoner implements OWLReasoner {
         return false;
     }
 
-    @Override
-    public boolean isSatisfiable(OWLClassExpression owlClassExpression) {
-        return false;
-    }
+
 
     @Override
     public Node<OWLClass> getUnsatisfiableClasses() {
@@ -208,35 +286,6 @@ public class Reasoner implements OWLReasoner {
         return null;
     }
 
-    @Override
-    public NodeSet<OWLClass> getTypes(OWLNamedIndividual owlNamedIndividual, boolean b) {
-        return null;
-    }
-
-    @Override
-    public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean b) {
-        return null;
-    }
-
-    @Override
-    public NodeSet<OWLNamedIndividual> getObjectPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLObjectPropertyExpression owlObjectPropertyExpression) {
-        return null;
-    }
-
-    @Override
-    public Set<OWLLiteral> getDataPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLDataProperty owlDataProperty) {
-        return null;
-    }
-
-    @Override
-    public Node<OWLNamedIndividual> getSameIndividuals(OWLNamedIndividual owlNamedIndividual) {
-        return null;
-    }
-
-    @Override
-    public NodeSet<OWLNamedIndividual> getDifferentIndividuals(OWLNamedIndividual owlNamedIndividual) {
-        return null;
-    }
 
     @Override
     public long getTimeOut() {
