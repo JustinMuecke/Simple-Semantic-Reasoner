@@ -3,21 +3,22 @@ package reasoner;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
 import org.semanticweb.owlapi.reasoner.impl.*;
-import org.semanticweb.owlapi.search.EntitySearcher;
 import org.semanticweb.owlapi.util.Version;
+import reasoner.implementations.InstanceRetrieverImpl;
+import reasoner.implementations.TypeRetrieverImpl;
+import reasoner.interfaces.InstanceRetriever;
+import reasoner.interfaces.TypeRetriever;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Reasoner implements OWLReasoner {
 
 
-    private OWLOntology ontology;
-    private OWLDataFactory factory;
+    private final OWLOntology ontology;
+    private final OWLDataFactory factory;
 
     public Reasoner(OWLOntology ontology){
         this.ontology = ontology;
@@ -26,35 +27,42 @@ public class Reasoner implements OWLReasoner {
 
     // __________________ INDIVIDUALS ______________________________
     @Override
+    @ParametersAreNonnullByDefault
     public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean b) {
-        DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
-        var namedIndividuals = ontology.getIndividualsInSignature();
-        for(OWLNamedIndividual ind : namedIndividuals){
-            Set<OWLClassExpression> expr = ontology.classAssertionAxioms(ind)
-                    .map(OWLClassAssertionAxiom::getClassExpression)
-                    .collect(Collectors.toSet());
-            switch (owlClassExpression.getClassExpressionType()){
-                case OWL_CLASS -> {if(expr.contains(owlClassExpression)) result.addEntity(ind);}
-                case OBJECT_INTERSECTION_OF -> {if(expr.containsAll(owlClassExpression.asConjunctSet())) result.addEntity(ind);}
-                case OBJECT_UNION_OF -> {if(expr.stream().anyMatch(i->owlClassExpression.asDisjunctSet().contains(i))) result.addEntity(ind);}
-            }
-        }
-        return result;
+        InstanceRetriever retriever = new InstanceRetrieverImpl(ontology);
+        return retriever.getInstances(owlClassExpression, b);
     }
-
+    @Override
+    @ParametersAreNonnullByDefault
+    public NodeSet<OWLClass> getTypes(OWLNamedIndividual owlNamedIndividual, boolean b) {
+        TypeRetriever retriever = new TypeRetrieverImpl(ontology);
+        return retriever.getTypes(owlNamedIndividual, b);
+    }
 
     @Override
-    public NodeSet<OWLClass> getTypes(OWLNamedIndividual owlNamedIndividual, boolean b) {
-        DefaultNodeSet<OWLClass> classes = new OWLClassNodeSet();
-        Set<OWLClass> cls = ontology.classAssertionAxioms(owlNamedIndividual)
-                .map(OWLClassAssertionAxiom::getClassExpression)
-                .map(AsOWLClass::asOWLClass)
-                .collect(Collectors.toSet());
-        for(OWLClass cl : cls){
-            classes.addEntity(cl);
-        }
-        return classes;
+    public boolean isConsistent() {
+        return false;
     }
+
+    @Override
+    public Node<OWLClass> getUnsatisfiableClasses() {
+        return null;
+    }
+
+    @Override
+    public boolean isEntailed(OWLAxiom owlAxiom) {
+        return false;
+    }
+
+    @Override
+    public boolean isEntailed(Set<? extends OWLAxiom> set) {
+        return false;
+    }
+
+
+
+
+
 
 
 
@@ -149,27 +157,7 @@ public class Reasoner implements OWLReasoner {
         return null;
     }
 
-    @Override
-    public boolean isConsistent() {
-        return false;
-    }
 
-
-
-    @Override
-    public Node<OWLClass> getUnsatisfiableClasses() {
-        return null;
-    }
-
-    @Override
-    public boolean isEntailed(OWLAxiom owlAxiom) {
-        return false;
-    }
-
-    @Override
-    public boolean isEntailed(Set<? extends OWLAxiom> set) {
-        return false;
-    }
 
     @Override
     public boolean isEntailmentCheckingSupported(AxiomType<?> axiomType) {
