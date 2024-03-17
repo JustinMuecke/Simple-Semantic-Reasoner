@@ -27,6 +27,6 @@ public class SimpleTypeRetriever implements TypeRetriever {
         for(OWLClass cl : cls){
             classes.addEntity(cl);
         }
-        return classes;
+        return classes; 
     }
 }

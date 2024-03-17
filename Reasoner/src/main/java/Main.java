@@ -28,7 +28,7 @@ public class Main {
         OWLClassExpression ce = factory.getOWLClass(IOR + "PaNET01269");
         OWLClassAssertionAxiom axiom = factory.getOWLClassAssertionAxiom(intersectionOfClasses, ni);
         //System.out.println("Sub Classes: " + reasoner.getSubClasses(ce, false).entities().collect(Collectors.toSet()));
-        System.out.println("Super Classes: " + reasoner.getSuperClasses(ce, false).entities().collect(Collectors.toSet()));
+        reasoner.getSameIndividuals(ni);
 
 
         /*

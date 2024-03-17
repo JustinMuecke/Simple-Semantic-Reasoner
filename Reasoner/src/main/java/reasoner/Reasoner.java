@@ -61,7 +61,15 @@ public class Reasoner implements OWLReasoner {
     }
 
 
+    @Override
+    public Node<OWLClass> getEquivalentClasses(OWLClassExpression owlClassExpression) {
+        return null;
+    }
 
+    @Override
+    public NodeSet<OWLClass> getDisjointClasses(OWLClassExpression owlClassExpression) {
+        return null;
+    }
 
 
 
@@ -87,7 +95,23 @@ public class Reasoner implements OWLReasoner {
 
     @Override
     public Node<OWLNamedIndividual> getSameIndividuals(OWLNamedIndividual owlNamedIndividual) {
-        return null;
+        var namedIndividuals = ontology.getIndividualsInSignature();
+        var dataProperties = owlNamedIndividual.getDataPropertiesInSignature();
+        var dataTypes = owlNamedIndividual.getDatatypesInSignature();
+        var objectProperties = owlNamedIndividual.getObjectPropertiesInSignature();
+        var individuals = owlNamedIndividual.getIndividualsInSignature();
+        DefaultNode<OWLNamedIndividual> result = new OWLNamedIndividualNode();
+
+        for(OWLNamedIndividual ind : namedIndividuals){
+            if(ind.getDataPropertiesInSignature().equals(dataProperties) &&
+                    ind.getDatatypesInSignature().equals(dataTypes) &&
+                    ind.getObjectPropertiesInSignature().equals(objectProperties) &&
+                    ind.getIndividualsInSignature().equals(individuals)
+            ) {
+                result.add(ind);
+            }
+        }
+        return result;
     }
 
     @Override
@@ -145,7 +169,7 @@ public class Reasoner implements OWLReasoner {
 
     @Override
     public OWLOntology getRootOntology() {
-        return null;
+        return ontology;
     }
 
     @Override
@@ -193,15 +217,7 @@ public class Reasoner implements OWLReasoner {
 
 
 
-    @Override
-    public Node<OWLClass> getEquivalentClasses(OWLClassExpression owlClassExpression) {
-        return null;
-    }
 
-    @Override
-    public NodeSet<OWLClass> getDisjointClasses(OWLClassExpression owlClassExpression) {
-        return null;
-    }
 
     @Override
     public Node<OWLObjectPropertyExpression> getTopObjectPropertyNode() {

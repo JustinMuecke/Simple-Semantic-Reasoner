@@ -1,0 +1,15 @@
+ return (
+    <>
+      <h1> Simple Semantic Web Reasoner - QueryUI</h1>     
+      <div id="card">
+        <div id="Query" >
+          <textarea id="QueryInput" name="Query" value={message} onChange={handleMessageChange} placeholder='Insert Query'/>
+        </div>
+        <div id="Button">
+          <button onClick={callGrpcService}>
+            Request
+          </button>
+        </div>
+      </div>
+    </>
+  )

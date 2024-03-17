@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class SimpleSuperClassRetriever implements SuperClassRetriever {
 
 
-    private OWLOntology ontology;
+    private final OWLOntology ontology;
 
     public SimpleSuperClassRetriever(OWLOntology ontology) {
         this.ontology = ontology;

@@ -18,7 +18,7 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
 
     @Override
     public boolean isEntailed(OWLAxiom owlAxiom) {
-        return owlAxiom.accept(new EntailmentVisitor());
+        return owlAxiom.accept(new EntailmentVisitor(ontology, reasoner));
 
     }
 
