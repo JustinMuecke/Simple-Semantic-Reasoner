@@ -1,12 +1,9 @@
 import filemanager.Reader;
-import network.QueryServer;
-import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
-import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import reasoner.Reasoner;
 
-import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -18,15 +15,22 @@ public class Main {
         OWLDataFactory factory = manager.getOWLDataFactory();
         IRI IOR = IRI.create("http://purl.org/pan-science/PaNET/");
 
-        System.out.println("Axioms: "+ontology.getAxiomCount()+", Format: "+ manager.getOntologyFormat(ontology));
+
         Reasoner reasoner = new Reasoner(ontology);
 
         OWLClass cl1 = factory.getOWLClass(IOR + "PaNET00001");
+        OWLClass cl2 = factory.getOWLClass(IOR + "PaNET00005");
+
         NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(cl1);
 
         OWLNamedIndividual ni = factory.getOWLNamedIndividual("PaNET:mySingleCrystalDiffractionTechnique");
-        NodeSet<OWLClass> cl = reasoner.getTypes(ni);
-        System.out.println(cl);
+        OWLClassExpression intersectionOfClasses = factory.getOWLObjectIntersectionOf(cl1, cl2);
+        OWLClassExpression ce = factory.getOWLClass(IOR + "PaNET01269");
+        OWLClassAssertionAxiom axiom = factory.getOWLClassAssertionAxiom(intersectionOfClasses, ni);
+        //System.out.println("Sub Classes: " + reasoner.getSubClasses(ce, false).entities().collect(Collectors.toSet()));
+        reasoner.getSameIndividuals(ni);
+
+
         /*
         try{
             server.start();

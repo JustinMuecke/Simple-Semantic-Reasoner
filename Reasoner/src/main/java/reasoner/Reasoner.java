@@ -1,18 +1,15 @@
 package reasoner;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
 import org.semanticweb.owlapi.reasoner.impl.*;
 import org.semanticweb.owlapi.util.Version;
-import reasoner.implementations.InstanceRetrieverImpl;
-import reasoner.implementations.TypeRetrieverImpl;
-import reasoner.interfaces.InstanceRetriever;
-import reasoner.interfaces.TypeRetriever;
+import reasoner.components.EntailmentChecker;
+import reasoner.components.implementations.*;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Reasoner implements OWLReasoner {
 
@@ -25,38 +22,81 @@ public class Reasoner implements OWLReasoner {
         this.factory = ontology.getOWLOntologyManager().getOWLDataFactory();
     }
 
-    // __________________ INDIVIDUALS ______________________________
+    // __________________ RETRIEVER ______________________________
     @Override
     @ParametersAreNonnullByDefault
     public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean b) {
-        InstanceRetriever retriever = new InstanceRetrieverImpl(ontology);
-        return retriever.getInstances(owlClassExpression, b);
+        return new SimpleInstanceRetriever(ontology).getInstances(owlClassExpression, b);
     }
     @Override
     @ParametersAreNonnullByDefault
     public NodeSet<OWLClass> getTypes(OWLNamedIndividual owlNamedIndividual, boolean b) {
-        TypeRetriever retriever = new TypeRetrieverImpl(ontology);
-        return retriever.getTypes(owlNamedIndividual, b);
+        return new SimpleTypeRetriever(ontology).getTypes(owlNamedIndividual, b);
+
     }
 
     @Override
+    @ParametersAreNonnullByDefault
+    public NodeSet<OWLClass> getSubClasses(OWLClassExpression owlClassExpression, boolean b) {
+        return new SimpleSubClassRetriever(ontology).getSubClasses(owlClassExpression,b);
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public NodeSet<OWLClass> getSuperClasses(OWLClassExpression owlClassExpression, boolean b) {
+        return new SimpleSuperClassRetriever(ontology).getSuperClasses(owlClassExpression, b);
+    }
     public boolean isConsistent() {
-        return false;
+            return false;
+    }
+
+    //______________________________ ENTAILMENT
+    @Override
+    public boolean isEntailmentCheckingSupported(AxiomType<?> axiomType) {
+        return switch (axiomType.toString()) {
+            case "OWLClassAssertion" -> true;
+            case "OWLSubAnnotationPropertyOfAxiom" -> true;
+            case "OWLAnnotationAssertionAxiom" -> true;
+            case "OWLAnnotationPropertyDomainAxiom" -> true;
+            case "OWLAnnotationPropertyRangeAxiom" -> true;
+            case "OWLDeclarationAxiom" -> true;
+            case "OWLClassAssertionAxiom" -> true;
+            default -> false;
+        };
+    }
+
+    @ParametersAreNonnullByDefault
+    public boolean isEntailed(OWLAxiom owlAxiom) {
+        EntailmentChecker entailmentChecker = new SimpleEntailmentChecker(this, ontology);
+        return entailmentChecker.isEntailed(owlAxiom);
     }
 
     @Override
-    public Node<OWLClass> getUnsatisfiableClasses() {
+    @ParametersAreNonnullByDefault
+    public boolean isEntailed(Set<? extends OWLAxiom> set) {
+        return new SimpleEntailmentChecker(this, ontology).isEntailed(set);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @Override    @ParametersAreNonnullByDefault
+
+    public Node<OWLClass> getEquivalentClasses(OWLClassExpression owlClassExpression) {
         return null;
     }
 
-    @Override
-    public boolean isEntailed(OWLAxiom owlAxiom) {
-        return false;
-    }
+    @Override    @ParametersAreNonnullByDefault
 
-    @Override
-    public boolean isEntailed(Set<? extends OWLAxiom> set) {
-        return false;
+    public NodeSet<OWLClass> getDisjointClasses(OWLClassExpression owlClassExpression) {
+        return null;
     }
 
 
@@ -67,33 +107,56 @@ public class Reasoner implements OWLReasoner {
 
 
 
-    @Override
+
+
+
+
+    @Override    @ParametersAreNonnullByDefault
+
     public NodeSet<OWLNamedIndividual> getObjectPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLObjectPropertyExpression owlObjectPropertyExpression) {
         return null;
     }
 
-    @Override
+    @Override    @ParametersAreNonnullByDefault
+
     public Set<OWLLiteral> getDataPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLDataProperty owlDataProperty) {
         return null;
     }
 
-    @Override
+    @Override    @ParametersAreNonnullByDefault
+
     public Node<OWLNamedIndividual> getSameIndividuals(OWLNamedIndividual owlNamedIndividual) {
-        return null;
+        var namedIndividuals = ontology.getIndividualsInSignature();
+        var dataProperties = owlNamedIndividual.getDataPropertiesInSignature();
+        var dataTypes = owlNamedIndividual.getDatatypesInSignature();
+        var objectProperties = owlNamedIndividual.getObjectPropertiesInSignature();
+        var individuals = owlNamedIndividual.getIndividualsInSignature();
+        DefaultNode<OWLNamedIndividual> result = new OWLNamedIndividualNode();
+
+        for(OWLNamedIndividual ind : namedIndividuals){
+            if(ind.getDataPropertiesInSignature().equals(dataProperties) &&
+                    ind.getDatatypesInSignature().equals(dataTypes) &&
+                    ind.getObjectPropertiesInSignature().equals(objectProperties) &&
+                    ind.getIndividualsInSignature().equals(individuals)
+            ) {
+                result.add(ind);
+            }
+        }
+        return result;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLNamedIndividual> getDifferentIndividuals(OWLNamedIndividual owlNamedIndividual) {
         return null;
     }
 
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public void precomputeInferences(InferenceType... inferenceTypes) {
 
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public boolean isSatisfiable(OWLClassExpression owlClassExpression) {
         return false;
     }
@@ -102,7 +165,7 @@ public class Reasoner implements OWLReasoner {
 
     @Override
     public String getReasonerName() {
-        return "SSWR";
+        return "Simple Semantic Reasoner";
     }
 
     @Override
@@ -137,7 +200,7 @@ public class Reasoner implements OWLReasoner {
 
     @Override
     public OWLOntology getRootOntology() {
-        return null;
+        return ontology;
     }
 
     @Override
@@ -147,7 +210,7 @@ public class Reasoner implements OWLReasoner {
 
 
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public boolean isPrecomputed(InferenceType inferenceType) {
         return false;
     }
@@ -159,10 +222,16 @@ public class Reasoner implements OWLReasoner {
 
 
 
+
+
+
     @Override
-    public boolean isEntailmentCheckingSupported(AxiomType<?> axiomType) {
-        return false;
+    public Node<OWLClass> getUnsatisfiableClasses() {
+        return null;
     }
+
+
+
 
     @Override
     public Node<OWLClass> getTopClassNode() {
@@ -174,25 +243,9 @@ public class Reasoner implements OWLReasoner {
         return null;
     }
 
-    @Override
-    public NodeSet<OWLClass> getSubClasses(OWLClassExpression owlClassExpression, boolean b) {
-        return null;
-    }
 
-    @Override
-    public NodeSet<OWLClass> getSuperClasses(OWLClassExpression owlClassExpression, boolean b) {
-        return null;
-    }
 
-    @Override
-    public Node<OWLClass> getEquivalentClasses(OWLClassExpression owlClassExpression) {
-        return null;
-    }
 
-    @Override
-    public NodeSet<OWLClass> getDisjointClasses(OWLClassExpression owlClassExpression) {
-        return null;
-    }
 
     @Override
     public Node<OWLObjectPropertyExpression> getTopObjectPropertyNode() {
@@ -204,37 +257,37 @@ public class Reasoner implements OWLReasoner {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLObjectPropertyExpression> getSubObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLObjectPropertyExpression> getSuperObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public Node<OWLObjectPropertyExpression> getEquivalentObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLObjectPropertyExpression> getDisjointObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public Node<OWLObjectPropertyExpression> getInverseObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLClass> getObjectPropertyDomains(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLClass> getObjectPropertyRanges(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
         return null;
     }
@@ -249,27 +302,27 @@ public class Reasoner implements OWLReasoner {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLDataProperty> getSubDataProperties(OWLDataProperty owlDataProperty, boolean b) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLDataProperty> getSuperDataProperties(OWLDataProperty owlDataProperty, boolean b) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public Node<OWLDataProperty> getEquivalentDataProperties(OWLDataProperty owlDataProperty) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLDataProperty> getDisjointDataProperties(OWLDataPropertyExpression owlDataPropertyExpression) {
         return null;
     }
 
-    @Override
+    @Override@ParametersAreNonnullByDefault
     public NodeSet<OWLClass> getDataPropertyDomains(OWLDataProperty owlDataProperty, boolean b) {
         return null;
     }
