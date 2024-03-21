@@ -1,0 +1,18 @@
+<rdf:RDF>
+<owl:Class rdf:ID="TraditionalItalianOpera">
+  <rdfs:subClassOf rdf:resource="#Opera"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasOperaType"/>
+      <owl:someValuesFrom>
+        <owl:Class>
+          <owl:oneOf rdf:parseType="Collection">
+            <owl:Thing rdf:about="#OperaSeria"/>
+            <owl:Thing rdf:about="#OperaBuffa"/>
+          </owl:oneOf>
+        </owl:Class>
+      </owl:someValuesFrom>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+</rdf:RDF>

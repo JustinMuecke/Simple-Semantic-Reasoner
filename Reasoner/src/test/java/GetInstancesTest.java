@@ -43,7 +43,7 @@ public class GetInstancesTest {
         OWLClass cl2 = factory.getOWLClass(IOR + "PaNET00002");
         OWLClassExpression intersectionOfClasses = factory.getOWLObjectIntersectionOf(cl1, cl2);
         NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(intersectionOfClasses);
-
+        System.out.println(individuals);
         assertEquals(3,individuals.getNodes().size());
     }
     @Test
