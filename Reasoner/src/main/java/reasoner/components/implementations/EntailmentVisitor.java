@@ -82,7 +82,6 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
             if(!individualClasses.isEmpty()) return true;
         }
         return false;
-
     }
     private static Set<OWLClass> reduceSets(Set<OWLClass> accumulator, Set<OWLClass> value){
         accumulator.addAll(value);
@@ -101,4 +100,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
                         new HashSet<>(), EntailmentVisitor::reduceSets
                 );
     }
+
+
+
 }

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.eclipse.rdf4j:rdf4j-model-vocabulary:4.2.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.eclipse.rdf4j" artifactId="rdf4j-model-vocabulary" version="4.2.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-model-vocabulary/4.2.0/eab9f32120ec61e6af4f50b70a1038223e91d6be/rdf4j-model-vocabulary-4.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
