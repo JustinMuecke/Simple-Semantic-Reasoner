@@ -1,0 +1,91 @@
+Prefix(:=<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family>
+
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>))
+Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasSex>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild>)
+
+ObjectPropertyDomain(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>)))
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father>)
+
+EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father> ObjectIntersectionOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>))
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>)
+DisjointClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother>)
+
+# Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female>)
+
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex>)
+
+# Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male>)
+
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex>)
+
+# Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother>)
+
+EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother> ObjectIntersectionOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>))
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>)
+
+# Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>)
+
+EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
+
+ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
+
+# Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna>)
+
+ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna>)
+ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
+
+# Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>)
+
+ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
+
+# Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt>)
+
+ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt>)
+ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>)
+
+
+EquivalentClasses(ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>)) ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>))
+)

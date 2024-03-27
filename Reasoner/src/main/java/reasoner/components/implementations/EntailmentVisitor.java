@@ -101,23 +101,46 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         Set<OWLClassAssertionAxiom> axiomSet = ontology.getClassAssertionAxioms(ind);
         // If axioms already in ontology trivially return true
         if (axiomSet.contains(axiom)) return true;
-        // If Asserted Class is Super Class of a Class the individual is already instance of return true
+
+        // If Asserted ClassExpression is Super Class of a Class the individual is already instance of return true
         Set<OWLClass> superClasses = getSuperClassesOfNI(ontology, ind, reasoner);
-        Set<OWLClass> axiomClass = axiom.getClassesInSignature();
-        for (OWLClass c : axiomClass) {
-            if (superClasses.contains(c)) return true;
-        }
+        OWLClassExpression axiomClass = axiom.getClassExpression();
+        if (superClasses.contains(axiomClass.asOWLClass())) return true;
+
         // If Asserted Class is Equivalent Class of a Class the Individual is already instance of return true
-        for (OWLClass c : axiomClass) {
-            Set<OWLEquivalentClassesAxiom> equivalentClassesAxiomSet = ontology.getEquivalentClassesAxioms(c);
-            Set<OWLClass> equivalentClasses = equivalentClassesAxiomSet.stream()
-                    .map(HasClassesInSignature::getClassesInSignature)
-                    .reduce(new HashSet<>(), EntailmentVisitor::reduceSets);
-            Set<OWLClass> individualClasses = reasoner.getTypes(ind).getFlattened()
-                    .stream()
-                    .filter(equivalentClasses::contains)
-                    .collect(Collectors.toSet());
-            if (!individualClasses.isEmpty()) return true;
+        // If Class Assertion is for OWL Class:
+        switch(axiomClass.getClassExpressionType()){
+            case OWL_CLASS : if(equivalentForClass(ontology, (OWLClass) axiomClass, ind)) return Boolean.TRUE;
+            //case OBJECT_INTERSECTION_OF: if( equivalentForIntersection(ontology, (OWLClass) axiomClass)) return Boolean.TRUE;
+            //case OBJECT_UNION_OF: if(equivalentForUnion(ontology, (OWLClass) axiomClass)) return Boolean.TRUE;
+        }
+
+
+
+        return Boolean.FALSE;
+    }
+
+    private Boolean equivalentForClass(OWLOntology ontology, OWLClass axiomClass, OWLNamedIndividual individual){
+        Set<OWLEquivalentClassesAxiom> equivalentClassesAxiomSet = ontology.getEquivalentClassesAxioms(axiomClass);
+        Set<OWLClassAssertionAxiom> classAssertionAxioms = ontology.getClassAssertionAxioms(individual);
+        // If individual is instance of equivalent class -> instance of asserted class
+        for (OWLEquivalentClassesAxiom axiom : equivalentClassesAxiomSet){
+            System.out.println(axiom);
+            for (OWLClassExpression expression : axiom.getClassExpressions()){
+                System.out.println("llll");System.out.println(expression);
+                try {
+                    if (reasoner.getInstances(expression).getFlattened().contains(individual)) return Boolean.TRUE;
+                }
+                catch(Exception ignored){
+                }
+            }
+        }
+        for (OWLClassAssertionAxiom axiom : classAssertionAxioms){
+            OWLClassExpression classExpression = axiom.getClassExpression();
+            Set<OWLClass> equivalentClasses = reasoner.getEquivalentClasses(classExpression).getEntities();
+            for(OWLClass owlClass : equivalentClasses){
+                if(reasoner.getInstances(owlClass).containsEntity(individual)) return Boolean.TRUE;
+            }
         }
         return false;
     }
@@ -127,18 +150,19 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         return accumulator;
     }
 
+
     private static Set<OWLClass> getSuperClassesOfNI(OWLOntology ontology, OWLNamedIndividual ind, Reasoner reasoner) {
         Set<OWLClassAssertionAxiom> axiomSet = ontology.getClassAssertionAxioms(ind);
         return axiomSet.stream()
                 .map(HasClassesInSignature::getClassesInSignature)
                 .map(
                         (c) -> c.stream()
+                                .map(cls -> (OWLClassExpression) cls)
                                 .map(e -> reasoner.getSuperClasses(e, false).getFlattened())
                                 .reduce(new HashSet<>(), EntailmentVisitor::reduceSets)
                 ).reduce(
                         new HashSet<>(), EntailmentVisitor::reduceSets
                 );
     }
-
 
 }

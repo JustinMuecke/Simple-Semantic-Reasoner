@@ -20,12 +20,17 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
     public SimpleInstanceRetriever(OWLOntology ontology){
         this.ontology = ontology;
     }
+    //TODO: Implement ClassExpression cases
+
     @Override
     public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean onlyDirect) {
         return switch (owlClassExpression.getClassExpressionType()) {
             case OWL_CLASS -> getSingleClassExtension((OWLClass) owlClassExpression);
             case OBJECT_INTERSECTION_OF -> getIntersectionClassExtension((OWLObjectIntersectionOf) owlClassExpression);
             case OBJECT_UNION_OF -> getUnionClassExtension((OWLObjectUnionOf) owlClassExpression);
+            case OBJECT_SOME_VALUES_FROM -> null;
+            case OBJECT_HAS_VALUE -> null;
+            case OBJECT_ALL_VALUES_FROM -> null;
             default -> null;
         };
     }
