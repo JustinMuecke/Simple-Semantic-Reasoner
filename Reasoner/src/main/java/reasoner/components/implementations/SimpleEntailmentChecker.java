@@ -4,6 +4,8 @@ import org.semanticweb.owlapi.model.*;
 import reasoner.Reasoner;
 import reasoner.components.EntailmentChecker;
 
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class SimpleEntailmentChecker implements EntailmentChecker {
@@ -23,11 +25,14 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
     }
 
     @Override
-    public boolean isEntailed(Set<? extends OWLAxiom> set) {
+    public Optional<Set<OWLAxiom>> isEntailed(Set<? extends OWLAxiom> set) {
+        Set<OWLAxiom> entailedAxioms = new HashSet<>();
         for(OWLAxiom ax : set){
-            if(!ax.accept(new EntailmentVisitor(ontology, reasoner))) return false;
+            if(ax.accept(new EntailmentVisitor(ontology, reasoner))){
+                entailedAxioms.add(ax);
+            }
         }
-        return true;
+        return entailedAxioms.isEmpty() ? Optional.empty() : Optional.of(entailedAxioms);
     }
 
 

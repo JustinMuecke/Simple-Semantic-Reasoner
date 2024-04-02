@@ -27,7 +27,7 @@ public class GetInstancesTest {
         IOR = IRI.create("http://purl.org/pan-science/PaNET/");
 
         System.out.println("Axioms: "+ontology.getAxiomCount()+", Format: "+ manager.getOntologyFormat(ontology));
-        reasoner = new Reasoner(ontology);
+        reasoner = new Reasoner(ontology, factory);
     }
 
 

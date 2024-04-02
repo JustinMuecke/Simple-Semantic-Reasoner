@@ -114,10 +114,7 @@ public interface ALCReasoner extends OWLReasoner {
     default void flush() {
 
     }
-    @Override
-    default List<OWLOntologyChange> getPendingChanges() {
-        return null;
-    }
+
     @Override
     default Set<OWLAxiom> getPendingAxiomAdditions() {
         return null;
