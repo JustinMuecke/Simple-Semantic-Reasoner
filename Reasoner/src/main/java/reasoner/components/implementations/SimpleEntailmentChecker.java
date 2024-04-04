@@ -20,6 +20,7 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
 
     @Override
     public boolean isEntailed(OWLAxiom owlAxiom) {
+        if(ontology.getAxioms().contains(owlAxiom)) return true;
         return owlAxiom.accept(new EntailmentVisitor(ontology, reasoner));
 
     }
@@ -28,6 +29,10 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
     public Optional<Set<OWLAxiom>> isEntailed(Set<? extends OWLAxiom> set) {
         Set<OWLAxiom> entailedAxioms = new HashSet<>();
         for(OWLAxiom ax : set){
+            if(ontology.getAxioms().contains(ax)){
+                entailedAxioms.add(ax);
+                continue;
+            }
             if(ax.accept(new EntailmentVisitor(ontology, reasoner))){
                 entailedAxioms.add(ax);
             }

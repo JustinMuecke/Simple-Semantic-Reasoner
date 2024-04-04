@@ -20,8 +20,9 @@ public class Main {
         // Individual Class Assertion Axioms
 
         OWLNamedIndividual rolt = factory.getOWLNamedIndividual(IOR + "#Rolt");
-        OWLClass parent = factory.getOWLClass(IOR + "#Parent");
-
+        OWLObjectProperty hasAncestor = factory.getOWLObjectProperty(IOR + "#hasAncestor");
+        OWLNamedIndividual annika = factory.getOWLNamedIndividual(IOR + "#Annika");
+        System.out.println(reasoner.isEntailed(factory.getOWLObjectPropertyAssertionAxiom(hasAncestor, annika, rolt)));
 
         OWLObjectProperty property = factory.getOWLObjectProperty(IOR + "#hasGrandChild");
         OWLClassExpression hasGrandChildExpression = factory.getOWLObjectSomeValuesFrom(property, factory.getOWLClass(IOR + "Child"));
@@ -31,9 +32,21 @@ public class Main {
                         factory.getOWLObjectProperty(IOR + "#hasChild"),
                             factory.getOWLClass(IOR + "#Child"))
         );
+
         System.out.println(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(expression, rolt)));
-        System.out.println(reasoner.isEntailed(factory.getOWLEquivalentClassesAxiom(hasGrandChildExpression, expression)));
+        /*System.out.println(reasoner.isEntailed(factory.getOWLEquivalentClassesAxiom(hasGrandChildExpression, expression)));
+        OWLObjectPropertyAssertionAxiom assertionAxiom = factory.getOWLObjectPropertyAssertionAxiom(
+                factory.getOWLObjectProperty(property), rolt, factory.getOWLNamedIndividual(IOR + "#Annika")
+        );
+        OWLObjectComplementOf childless = factory.getOWLObjectComplementOf(
+                    factory.getOWLObjectSomeValuesFrom(factory.getOWLObjectProperty(IOR + "#hasChild"), factory.getOWLClass(IOR + "#Child"))
+        );
+        System.out.println(reasoner.getInstances(childless));
+        */
+
+
     }
+
 }
 /*
  OWLIndividual anon = factory.getOWLAnonymousIndividual();

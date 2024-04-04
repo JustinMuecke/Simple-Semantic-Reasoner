@@ -96,6 +96,5 @@ public class EntailmentTest {
         Assertions.assertTrue(reasoner.isEntailed(
                 factory.getOWLClassAssertionAxiom(father, justin)
         ));
-
     }
 }

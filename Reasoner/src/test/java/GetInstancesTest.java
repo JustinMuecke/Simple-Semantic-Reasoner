@@ -3,6 +3,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
+import org.semanticweb.owlapi.reasoner.impl.DefaultNodeSet;
+import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNodeSet;
 import reasoner.Reasoner;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,4 +57,15 @@ public class GetInstancesTest {
 
         assertEquals(2,individuals.getNodes().size());
     }
+
+    @Test
+    public void childlessPersons(){
+        DefaultNodeSet<OWLNamedIndividual> expected = new OWLNamedIndividualNodeSet();
+        OWLObjectComplementOf childless = factory.getOWLObjectComplementOf(
+                factory.getOWLObjectSomeValuesFrom(factory.getOWLObjectProperty(IOR + "#hasChild"), factory.getOWLClass(IOR + "#Child"))
+        );
+        NodeSet<OWLNamedIndividual> childlessPersons = reasoner.getInstances(childless);
+
+    }
+
 }

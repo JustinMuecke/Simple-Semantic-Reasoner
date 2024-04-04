@@ -2,13 +2,13 @@ package reasoner.components.implementations;
 
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
-import org.semanticweb.owlapi.util.EscapeUtils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reasoner.Reasoner;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
@@ -19,6 +19,8 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * Be Careful of Cyclic Behaviour
      */
     Reasoner reasoner;
+    private static final Logger logger = LoggerFactory.getLogger("EntailmentVisitor");
+
 
     public EntailmentVisitor(OWLOntology ontology, Reasoner reasoner) {
         this.ontology = ontology;
@@ -65,6 +67,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @return
      */
     public Boolean visit(OWLEquivalentClassesAxiom axiom) {
+        logger.info("Visiting Equivalent Classes Axiom");
         Set<OWLClassExpression> ceSet = axiom.getClassExpressions();
         if(ceSet.stream().map(ce -> reasoner.getInstances(ce, false)).distinct().count() > 1) return Boolean.TRUE;
         return Boolean.FALSE;
@@ -105,6 +108,46 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         return superClassInstances.containsAll(subClassInstances);
     }
 
+    /**
+     * Checks whether the Object Property is Transitive, and if so, checks whether the Assertion is entailed through the Transitivity
+     * @param axiom axiom to visit
+     * @return
+     */
+    public Boolean visit(OWLObjectPropertyAssertionAxiom axiom){
+        logger.info("Visiting Object Property Assertion Axioms");
+        logger.info("Start: " + axiom.getSubject());
+        logger.info("Goal: " + axiom.getObject());
+
+
+        Set<OWLObjectPropertyAssertionAxiom> objectPropertyAssertionAxioms = ontology.getAxioms(AxiomType.OBJECT_PROPERTY_ASSERTION);
+
+        if(objectPropertyAssertionAxioms.contains(axiom)){
+            logger.info("Axiom already contained in ontology");
+            return true;
+        }
+        logger.info("Checking Transitive Properties");
+        objectPropertyAssertionAxioms = objectPropertyAssertionAxioms.stream().filter(ax -> ax.getProperty().equals(axiom.getProperty())).collect(Collectors.toSet());
+        List<OWLIndividual> transitiveIndividuals = new LinkedList<>();
+        Set<OWLIndividual> allConfirmedIndividuals = new HashSet<>();
+        transitiveIndividuals.add(axiom.getSubject());
+        while(!transitiveIndividuals.isEmpty()) {
+            List<OWLIndividual> foundRelators = new LinkedList<>();
+            for (OWLObjectPropertyAssertionAxiom assertionAxiom : objectPropertyAssertionAxioms) {
+                for (OWLIndividual individual : transitiveIndividuals) {
+                    if (assertionAxiom.getSubject().equals(individual)) {
+                        allConfirmedIndividuals.add(assertionAxiom.getObject());
+                        foundRelators.add(assertionAxiom.getObject());
+                    }
+                }
+            }
+            transitiveIndividuals = new LinkedList<>(foundRelators);
+
+        }
+        logger.info("Found Transitive Related Individuals: ");
+        logger.info(allConfirmedIndividuals.toString());
+        return allConfirmedIndividuals.contains(axiom.getObject());
+    }
+
 
     /**
      * A class assertion axiom of a Named Individual NI to a class C is entailed if the NI is asserted to be part of a subclass of the class C
@@ -113,47 +156,64 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @return true if the axiom is entailed in the ontology
      */
     public Boolean visit(OWLClassAssertionAxiom axiom) {
+        logger.info("Visiting Class Assertion Axiom");
         OWLNamedIndividual individual = axiom.getIndividual().asOWLNamedIndividual();
         Set<OWLClassAssertionAxiom> classAssertionsOfIndividual = ontology.getClassAssertionAxioms(individual);
         OWLClassExpression axiomClassExpression = axiom.getClassExpression();
+        logger.info("Individual: {}",  individual);
+        logger.info("Class Expression: {}", axiomClassExpression);
 
+        // If Individual is instance of ClassExpression -> Assertion is Entailed
+        logger.info("Checking if Individual is Instance of ClassExpression");
         Set<OWLNamedIndividual> instancesOfClassExpression = reasoner.getInstances(axiomClassExpression).getFlattened();
-        if(instancesOfClassExpression.contains(individual)) return Boolean.TRUE;
-
-
-        // If axioms already in ontology trivially return true
-        if (classAssertionsOfIndividual.contains(axiom)) return true;
+        if(instancesOfClassExpression.contains(individual)){
+            logger.info("Individual is Instance");
+            return Boolean.TRUE;
+        }
 
         // If Asserted ClassExpression is Super Class of a Class the individual is already instance of return true
+        logger.info("Getting SuperClasses of Class Expression");
         Set<OWLClass> superClasses = getSuperClassesOfNI(ontology, individual, reasoner);
         try {
+            logger.info("Found Super Classes: {}", superClasses);
             if (superClasses.contains(axiomClassExpression.asOWLClass())) return true;
         } catch (ClassCastException ignored){}
+
         // If Asserted Class is Equivalent Class of a Class the Individual is already instance of return true
         // If Class Assertion is for OWL Class:
-        switch(axiomClassExpression.getClassExpressionType()){
-            case OWL_CLASS : if(equivalentForClass(ontology, (OWLClass) axiomClassExpression, individual)) return Boolean.TRUE; break;
-            case OBJECT_INTERSECTION_OF: if( equivalentForIntersection(ontology,  axiomClassExpression)) return Boolean.TRUE; break;
-            case OBJECT_UNION_OF: if(equivalentForUnion(ontology, axiomClassExpression)) return Boolean.TRUE; break;
+        logger.info("Checking if Individual is Instance of an Equivalent Class of Class Expression");
+        return switch (axiomClassExpression.getClassExpressionType()) {
+            case OWL_CLASS -> equivalentForClass(ontology, (OWLClass) axiomClassExpression, individual);
+            case OBJECT_INTERSECTION_OF -> equivalentForIntersection(ontology, (OWLObjectIntersectionOf) axiomClassExpression, individual);
+            case OBJECT_UNION_OF -> equivalentForUnion(ontology, (OWLObjectUnionOf) axiomClassExpression, individual);
+            default -> false;
+        };
+    }
+
+    private Boolean equivalentForUnion(OWLOntology ontology, OWLObjectUnionOf axiomClass, OWLNamedIndividual individual) {
+        Set<OWLClassExpression> equivalentClassExpressions = getEquivalentClassesOfComplexClassExpression(ontology, axiomClass);
+        for(OWLClassExpression expression : equivalentClassExpressions){
+            if(reasoner.getInstances(expression).containsEntity(individual)) return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
+    /**
+     *
+     * @param ontology
+     * @param axiomClass
+     * @return
+     */
+    private Boolean equivalentForIntersection(OWLOntology ontology, OWLObjectIntersectionOf axiomClass, OWLNamedIndividual individual) {
+        Set<OWLClassExpression> equivalentClassExpressions = getEquivalentClassesOfComplexClassExpression(ontology, axiomClass);
+        for(OWLClassExpression expression : equivalentClassExpressions){
+            if(!reasoner.getInstances(expression).containsEntity(individual)) return Boolean.FALSE;
+        }
+        return Boolean.TRUE;
 
-    private Boolean equivalentForUnion(OWLOntology ontology, OWLClassExpression axiomClass) {
-        System.out.println("UNION0");
-        return false;
-    }
-
-    private Boolean equivalentForIntersection(OWLOntology ontology, OWLClassExpression axiomClass) {
-        System.out.println("INTERSECTION");
-        System.out.println(axiomClass);
-        System.out.println(axiomClass.getClassExpressionType());
-        return Boolean.FALSE;
     }
 
     private Boolean equivalentForClass(OWLOntology ontology, OWLClass axiomClass, OWLNamedIndividual individual){
         Set<OWLEquivalentClassesAxiom> equivalentClassesAxiomSet = ontology.getEquivalentClassesAxioms(axiomClass);
-        Set<OWLClassAssertionAxiom> classAssertionAxioms = ontology.getClassAssertionAxioms(individual);
         // If individual is instance of equivalent class -> instance of asserted class
         for (OWLEquivalentClassesAxiom axiom : equivalentClassesAxiomSet){
             for (OWLClassExpression expression : axiom.getClassExpressions()){
@@ -165,9 +225,12 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
                 }
             }
         }
+
+        Set<OWLClassAssertionAxiom> classAssertionAxioms = ontology.getClassAssertionAxioms(individual);
         for (OWLClassAssertionAxiom axiom : classAssertionAxioms){
             OWLClassExpression classExpression = axiom.getClassExpression();
             Set<OWLClass> equivalentClasses = reasoner.getEquivalentClasses(classExpression).getEntities();
+            equivalentClasses.remove(axiomClass);
             for(OWLClass owlClass : equivalentClasses){
                 if(reasoner.getInstances(owlClass).containsEntity(individual)) return Boolean.TRUE;
             }
@@ -193,6 +256,20 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
                 ).reduce(
                         new HashSet<>(), EntailmentVisitor::reduceSets
                 );
+    }
+
+    private static Set<OWLClassExpression> getEquivalentClassesOfComplexClassExpression(OWLOntology ontology, OWLClassExpression axiomClass) {
+        Set<OWLAxiom> declarations = ontology.getAxioms().stream().filter(owlAxiom -> owlAxiom.getAxiomType().equals(AxiomType.DECLARATION)).collect(Collectors.toSet());
+        Set<OWLClassExpression> equivalentClassExpressions = new HashSet<>();
+        for(OWLAxiom axiom : declarations){
+            if(axiom.getClassesInSignature().size() != 1) continue;
+            for(OWLClass classExpression : axiom.getClassesInSignature()) {
+                Set<OWLEquivalentClassesAxiom> equivalentClassAxioms = ontology.getEquivalentClassesAxioms(classExpression);
+                Set<OWLClassExpression> equivalentExpressions = equivalentClassAxioms.stream().map(equivalentClassesAxiom -> equivalentClassesAxiom.getClassExpressionsMinus(classExpression)).reduce(new HashSet<>(), (acc, val) -> {acc.addAll(val); return acc;});
+                if(equivalentExpressions.contains(axiomClass)) equivalentClassExpressions.add(classExpression);
+            }
+        }
+        return equivalentClassExpressions;
     }
 
 }

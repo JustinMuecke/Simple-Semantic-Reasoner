@@ -18,6 +18,7 @@ Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Par
 Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>))
 Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#PureGrandParent>))
 Declaration(Class(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor>))
 Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild>))
 Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild>))
 Declaration(ObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasSex>))
@@ -33,14 +34,18 @@ Declaration(NamedIndividual(<http://www.semanticweb.org/doo5i/ontologies/2024/2/
 #   Object Properties
 ############################
 
-# Object Property: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild>)
+# Object Property: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor>)
 
-ObjectPropertyDomain(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>)))
+TransitiveObjectProperty(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor>)
 
 
 ############################
 #   Classes
 ############################
+
+# Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>)
+
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>)
 
 # Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father>)
 
@@ -56,6 +61,7 @@ SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female> <h
 
 EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>)))
 EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>))
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>)
 
 # Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male>)
 
@@ -68,11 +74,13 @@ SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother> <h
 
 # Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent>)
 
-EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>))
+EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>))
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>)
 
 # Class: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#PureGrandParent> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#PureGrandParent>)
 
 EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#PureGrandParent> ObjectAllValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> ObjectSomeValuesFrom(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child>)))
+SubClassOf(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#PureGrandParent> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Person>)
 
 
 ############################
@@ -82,6 +90,8 @@ EquivalentClasses(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Pur
 # Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
 
 ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>)
 
 # Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna>)
 
@@ -92,15 +102,22 @@ ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Fami
 # Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>)
 
 ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt>)
 ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika>)
+
+# Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Marc> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Marc>)
+
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Marc> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Pascal>)
 
 # Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Niklas> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Niklas>)
 
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Niklas> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Pascal>)
 ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Niklas> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Olga>)
 
 # Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Olga> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Olga>)
 
 ClassAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Olga>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasAncestor> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Olga> <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Niklas>)
 
 # Individual: <http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Pascal> (<http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Pascal>)
 
