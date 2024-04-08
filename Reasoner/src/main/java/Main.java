@@ -1,11 +1,9 @@
 import filemanager.Reader;
 import org.semanticweb.owlapi.model.*;
-import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reasoner.Reasoner;
 
-import java.util.Set;
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger("Main");
