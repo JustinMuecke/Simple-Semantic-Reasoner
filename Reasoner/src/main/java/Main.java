@@ -1,11 +1,15 @@
 import filemanager.Reader;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reasoner.Reasoner;
 
 import java.util.Set;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger("Main");
+
 
     private static final String FILEPATH = "src/main/resources/family_base.owl";
     public static void main(String[] args) throws OWLOntologyCreationException {
@@ -33,7 +37,11 @@ public class Main {
                             factory.getOWLClass(IOR + "#Child"))
         );
 
-        System.out.println(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(expression, rolt)));
+        logger.info(String.valueOf(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(expression, rolt))));
+
+
+        OWLClassExpression hasValueExpression = factory.getOWLObjectHasValue(factory.getOWLObjectProperty(IOR + "#hasChild"), annika);
+        logger.info(reasoner.getInstances(hasValueExpression).toString());
         /*System.out.println(reasoner.isEntailed(factory.getOWLEquivalentClassesAxiom(hasGrandChildExpression, expression)));
         OWLObjectPropertyAssertionAxiom assertionAxiom = factory.getOWLObjectPropertyAssertionAxiom(
                 factory.getOWLObjectProperty(property), rolt, factory.getOWLNamedIndividual(IOR + "#Annika")

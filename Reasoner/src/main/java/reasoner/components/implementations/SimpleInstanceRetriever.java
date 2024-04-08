@@ -32,18 +32,33 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
             case OBJECT_COMPLEMENT_OF -> getComplementClassExtension((OWLObjectComplementOf) owlClassExpression);
             case OBJECT_SOME_VALUES_FROM -> getObjectSomeValueFromExtension((OWLObjectSomeValuesFrom) owlClassExpression);
             case OBJECT_ALL_VALUES_FROM -> getObjectAllValueFromExtension((OWLObjectAllValuesFrom) owlClassExpression);
-            case OBJECT_HAS_VALUE -> null;
+            case OBJECT_HAS_VALUE -> getObjectHasValueExtension((OWLObjectHasValue) owlClassExpression);
             default -> null;
         };
     }
 
+    private NodeSet<OWLNamedIndividual> getObjectHasValueExtension(OWLObjectHasValue owlClassExpression) {
+        Set<OWLNamedIndividual> extension = new HashSet<>();
+        Set<OWLObjectPropertyAssertionAxiom> assertionAxioms = ontology.getAxioms(AxiomType.OBJECT_PROPERTY_ASSERTION);
+        for(OWLObjectPropertyAssertionAxiom axiom : assertionAxioms){
+            if(axiom.getObject().equals(owlClassExpression.getFiller()) &&
+                    axiom.getProperty().equals(owlClassExpression.getProperty())){
+                logger.info(axiom.toString());
+                if(axiom.getSubject().isNamed()) extension.add(axiom.getSubject().asOWLNamedIndividual());
+            }
+        }
+        logger.info(owlClassExpression.getFiller().toString());
+
+
+        DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
+        result.addDifferentEntities(extension);
+        return result;
+    }
 
 
     private NodeSet<OWLNamedIndividual> getIntersectionClassExtension(OWLObjectIntersectionOf owlClassExpression) {
-        System.out.println(owlClassExpression);
         Set<OWLClassExpression> components =  owlClassExpression.getOperands();
         Set<NodeSet<OWLNamedIndividual>> toIntersect = components.stream().map(ce -> getInstances(ce, true)).collect(Collectors.toSet());
-        System.out.println(toIntersect);
         Iterator<NodeSet<OWLNamedIndividual>> iter = toIntersect.iterator();
         NodeSet<OWLNamedIndividual> res = iter.next();
         NodeSet<OWLNamedIndividual> current = iter.next();
