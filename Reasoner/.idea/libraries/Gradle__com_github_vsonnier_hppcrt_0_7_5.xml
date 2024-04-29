@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.vsonnier:hppcrt:0.7.5" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.github.vsonnier" artifactId="hppcrt" version="0.7.5" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.vsonnier/hppcrt/0.7.5/62ddbac53e3d718ee391994d31802ad18b701dac/hppcrt-0.7.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

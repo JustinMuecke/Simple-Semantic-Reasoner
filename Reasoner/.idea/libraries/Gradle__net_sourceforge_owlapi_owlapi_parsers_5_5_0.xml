@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sourceforge.owlapi:owlapi-parsers:5.5.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.sourceforge.owlapi" artifactId="owlapi-parsers" version="5.5.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.5.0/2185aec2132a670e176a9811f76f35fde7d0393c/owlapi-parsers-5.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
