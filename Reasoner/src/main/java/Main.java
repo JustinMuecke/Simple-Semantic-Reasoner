@@ -9,7 +9,7 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger("Main");
 
 
-    private static final String FILEPATH = "src/main/resources/family_base.owl";
+    private static final String FILEPATH = "src/main/resources/family_dim.owl";
     public static void main(String[] args) throws OWLOntologyCreationException {
         OWLOntology ontology = new Reader().read(FILEPATH);
         OWLOntologyManager manager = ontology.getOWLOntologyManager();
@@ -17,7 +17,9 @@ public class Main {
         IRI IOR = IRI.create("http://www.semanticweb.org/doo5i/ontologies/2024/2/Family");
         Reasoner reasoner = new Reasoner(ontology, factory);
 
-
+        for(OWLAxiom axiom : ontology.getAxioms()){
+            logger.info(axiom.toString());
+        }
 
         // Individual Class Assertion Axioms
 

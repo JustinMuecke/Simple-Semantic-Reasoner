@@ -16,6 +16,12 @@ public class SimpleEquivalentClassRetriever implements EquivalentClassRetriever 
         this.ontology = ontology;
     }
 
+    /**
+     * Gets all equivalent classes axioms, takes all classes in the signature of the axiom into a set and filters
+     * out the parameter class expression.
+     * @param owlClassExpression The class expression whose equivalent classes are to be retrieved.
+     * @return
+     */
     @Override
     public Node<OWLClass> getEquivalentClasses(OWLClassExpression owlClassExpression) {
         OWLClass cls = owlClassExpression.asOWLClass();
@@ -25,6 +31,7 @@ public class SimpleEquivalentClassRetriever implements EquivalentClassRetriever 
                         .map(HasClassesInSignature::getClassesInSignature)
                         .filter(set -> set.contains(cls))
                         .flatMap(Collection::stream)
+                            .filter(streamClass -> !streamClass.equals(cls))
                     );
     }
 }

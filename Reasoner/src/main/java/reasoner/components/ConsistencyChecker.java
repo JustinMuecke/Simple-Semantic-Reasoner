@@ -2,11 +2,8 @@ package reasoner.components;
 
 public interface ConsistencyChecker {
     /**
-     * When is an ontology not consistent?
-     *  -> Union(a,b) + Disjoint(a,b)
-     *  -> Cyclic SubClass Structure?
-     *  -> ....
-     * @return
+     * Checks whether the underlying ontology is consistent.
+     * @return boolean representing consistency
      */
     boolean isConsistent();
 }

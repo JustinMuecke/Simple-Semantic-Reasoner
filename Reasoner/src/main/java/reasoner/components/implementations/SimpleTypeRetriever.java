@@ -17,6 +17,14 @@ public class SimpleTypeRetriever implements TypeRetriever {
         this.ontology = ontology;
     }
 
+    /**
+     * Gets all class assertions axioms for the given named individual and collects the corresponding
+     * class expressions into a nodeset.
+     * @param owlNamedIndividual The individual whose types are to be retrieved.
+     * @param b Specifies if the direct types should be retrieved ( {@code true}), or if all
+     *        types should be retrieved ( {@code false}).
+     * @return
+     */
     @Override
     public NodeSet<OWLClass> getTypes(OWLNamedIndividual owlNamedIndividual, boolean b) {
         DefaultNodeSet<OWLClass> classes = new OWLClassNodeSet();
