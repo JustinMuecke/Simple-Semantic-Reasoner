@@ -15,6 +15,12 @@ public class SimpleSameIndividualRetriever implements SameIndividualRetriever {
         this.ontology = ontology;
     }
 
+    /**
+     * For the given individual, compares its data properties, data types, object properties, types to all other
+     * individuals.
+     * @param owlNamedIndividual The individual whose same individuals are to be retrieved.
+     * @return Node containing all individuals where all comparisons are true.
+     */
     @Override
     public Node<OWLNamedIndividual> getSameIndividuals(OWLNamedIndividual owlNamedIndividual) {
         var namedIndividuals = ontology.getIndividualsInSignature();

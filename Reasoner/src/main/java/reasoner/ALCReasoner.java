@@ -94,8 +94,19 @@ public interface ALCReasoner extends OWLReasoner {
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLDataProperty> getDisjointDataProperties(OWLDataPropertyExpression owlDataPropertyExpression) {
         return null;
+    }    @Override    @ParametersAreNonnullByDefault
+    default Set<OWLLiteral> getDataPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLDataProperty owlDataProperty) {
+        return null;
+    }
+    @Override    @ParametersAreNonnullByDefault
+    default NodeSet<OWLNamedIndividual> getObjectPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLObjectPropertyExpression owlObjectPropertyExpression) {
+        return null;
     }
 
+    @Override@ParametersAreNonnullByDefault
+    default NodeSet<OWLClass> getDataPropertyDomains(OWLDataProperty owlDataProperty, boolean b) {
+        return null;
+    }
 
     @Override@ParametersAreNonnullByDefault
     default void precomputeInferences(InferenceType... inferenceTypes) {

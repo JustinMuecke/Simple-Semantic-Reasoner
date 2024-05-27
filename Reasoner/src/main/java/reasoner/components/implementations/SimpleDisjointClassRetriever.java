@@ -18,15 +18,22 @@ public class SimpleDisjointClassRetriever implements DisjointClassRetriever {
         this.ontology = ontology;
     }
 
+    /**
+     * Gets all disjoint classes axioms, takes all classes in the signature of the axiom into a set and filters
+     * out the parameter class expression.
+     * @param owlClassExpression The class expression whose disjoint classes are to be retrieved.
+     * @return NodeSet containing all disjoint classes.
+     */
     @Override
     public NodeSet<OWLClass> getDisjointClasses(OWLClassExpression owlClassExpression) {
         OWLClass cls = owlClassExpression.asOWLClass();
         Set<OWLDisjointClassesAxiom> axiomSet = ontology.getDisjointClassesAxioms(cls);
         Set<OWLClass> disjointClasses = axiomSet.stream()
-                .filter(ax -> ax.getClassesInSignature().contains(cls))
                 .map(HasClassesInSignature::getClassesInSignature)
+                .filter(classesInSignature -> classesInSignature.contains(cls))
                 .flatMap(Collection::stream)
-                .filter(scls -> !scls.equals(cls)).collect(Collectors.toSet());
+                .filter(streamClass -> !streamClass.equals(cls))
+                .collect(Collectors.toSet());
         DefaultNodeSet<OWLClass> res = new OWLClassNodeSet();
         res.addDifferentEntities(disjointClasses);
         return res;
