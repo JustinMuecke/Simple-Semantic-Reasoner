@@ -4,9 +4,344 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae252807-faf8-4e28-99c6-74d176a96162" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryUI/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/QueryUI/src/App.tsx" afterDir="false" />
+    <list default="true" id="e53688e0-39dd-462c-9d8d-aa325dcbdf4c" name="Changes" comment="[CHORE] change folder">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_5_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_5_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ben_manes_caffeine_caffeine_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_jsonld_java_jsonld_java_0_13_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_vsonnier_hppcrt_0_7_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_annotations_4_1_1_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_common_protos_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_10_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_23_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_31_1_jre.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_32_1_3_android.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_api_1_61_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_context_1_15_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_context_1_61_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_core_1_15_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_core_1_61_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_netty_1_61_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_protobuf_1_15_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_protobuf_lite_1_15_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_stub_1_15_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_util_1_61_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_buffer_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_http2_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_http_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_socks_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_common_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_handler_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_handler_proxy_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_resolver_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_transport_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_transport_native_unix_common_4_1_100_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_opencensus_opencensus_api_0_12_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_opencensus_opencensus_contrib_grpc_metrics_0_12_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_perfmark_perfmark_api_0_26_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jakarta_activation_jakarta_activation_api_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_annotation_javax_annotation_api_1_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_api_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_apibinding_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_impl_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_oboformat_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_parsers_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_rio_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_tools_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_rdf_api_0_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_fluent_hc_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_cache_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_osgi_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_nio_4_4_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_osgi_4_4_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpmime_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_22_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_37_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_annotation_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_exception_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_io_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_iterator_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_text_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_util_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_xml_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_model_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_model_api_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_model_vocabulary_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_api_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_binary_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_datatypes_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_hdt_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_jsonld_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_languages_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_n3_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_nquads_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_ntriples_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_rdfjson_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_rdfxml_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_trig_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_trix_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_turtle_4_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_jcl_over_slf4j_1_7_32.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_2_0_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tukaani_xz_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/sswr.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/sswr.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/sswr.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarIssues.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Reasoner/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/filemanager/FileReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/filemanager/Reader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/ALCReasoner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/Reasoner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/ConsistencyChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/DisjointClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/EntailmentChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/EquivalentClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/InstanceRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/SameIndividualRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/SubClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/SuperClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/TypeRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/EntailmentCheckerConsistency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/EntailmentVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/HeuristicEntailmentChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleConsistencyChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleDisjointClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleEntailmentChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleEquivalentClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleSameIndividualRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleSubClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleSuperClassRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleTypeRetriever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Family.rdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/PaNET.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/PreMedOnto.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/WG.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/family.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/family_base.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/family_dim.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/goslim_agr.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/EntailmentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/FileReaderTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/GetInstancesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/PaNET.owl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/family_base.owl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_5_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_5_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_github_ben_manes_caffeine_caffeine_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_github_jsonld_java_jsonld_java_0_13_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_github_vsonnier_hppcrt_0_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_android_annotations_4_1_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_api_grpc_proto_google_common_protos_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_code_gson_gson_2_10_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_code_gson_gson_2_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_guava_guava_31_1_jre.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_guava_guava_32_1_3_android.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__commons_io_commons_io_2_11_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_api_1_61_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_context_1_15_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_context_1_61_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_core_1_15_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_core_1_61_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_netty_1_61_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_protobuf_1_15_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_protobuf_lite_1_15_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_stub_1_15_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_grpc_grpc_util_1_61_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_buffer_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_codec_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_codec_http2_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_codec_http_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_codec_socks_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_common_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_handler_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_handler_proxy_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_resolver_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_transport_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_netty_netty_transport_native_unix_common_4_1_100_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_opencensus_opencensus_api_0_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_opencensus_opencensus_contrib_grpc_metrics_0_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__io_perfmark_perfmark_api_0_26_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__jakarta_activation_jakarta_activation_api_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__javax_annotation_javax_annotation_api_1_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_api_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_apibinding_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_impl_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_oboformat_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_parsers_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_rio_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__net_sourceforge_owlapi_owlapi_tools_5_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_commons_commons_rdf_api_0_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_fluent_hc_4_5_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_cache_4_5_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_osgi_4_5_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_nio_4_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_osgi_4_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apache_httpcomponents_httpmime_4_5_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_22_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_37_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_23.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_annotation_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_exception_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_io_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_iterator_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_text_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_util_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_common_xml_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_model_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_model_api_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_model_vocabulary_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_api_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_binary_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_datatypes_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_hdt_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_jsonld_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_languages_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_n3_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_nquads_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_ntriples_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_rdfjson_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_rdfxml_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_trig_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_trix_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_eclipse_rdf4j_rdf4j_rio_turtle_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_slf4j_jcl_over_slf4j_1_7_32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_slf4j_slf4j_api_2_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/libraries/Gradle__org_tukaani_xz_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/modules/sswr.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/modules/sswr.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/modules/sswr.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/sonarIssues.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/filemanager/FileReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/filemanager/Reader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/ALCReasoner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/Reasoner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/ConsistencyChecker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/DisjointClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/EntailmentChecker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/EquivalentClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/InstanceRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/SameIndividualRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/SubClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/SuperClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/TypeRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/EntailmentCheckerConsistency.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/EntailmentVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/HeuristicEntailmentChecker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleConsistencyChecker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleDisjointClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleEntailmentChecker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleEquivalentClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleSameIndividualRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleSubClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleSuperClassRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/java/reasoner/components/implementations/SimpleTypeRetriever.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/Family.rdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/PaNET.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/PreMedOnto.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/WG.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/family.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/family_base.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/family_dim.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/goslim_agr.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/main/resources/test.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/test/java/EntailmentTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/test/java/FileReaderTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/test/java/GetInstancesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/test/resources/PaNET.owl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner/src/test/resources/family_base.owl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,36 +351,548 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sswr" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JustinMuecke&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="bcc4df9d-3c4b-419d-8437-65786831a89d" />
+        <option name="url" value="https://github.com/JustinMuecke/Simple-semnatic-reasoner.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectId" id="2bXdrePBU1eI2wHqlNEPb3zfCd5" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2bXdtS3tb6N48uqXkh0bzkmNHFZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Reasoner" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Gradle.Build Reasoner.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.EntailmentTest.classAssertionAxioms.executor": "Run",
+    "Gradle.EntailmentTest.executor": "Run",
+    "Gradle.EntailmentTest.hannaIsMother.executor": "Run",
+    "Gradle.EntailmentTest.justinIsFather.executor": "Run",
+    "Gradle.EntailmentTest.justinIsParent.executor": "Run",
+    "Gradle.EntailmentTest.subClassOfAxiom.executor": "Run",
+    "Gradle.GetInstancesTest.childlessPersons.executor": "Run",
+    "Gradle.GetInstancesTest.executor": "Run",
+    "Gradle.GetInstancesTest.intersectingClasses.executor": "Debug",
+    "Gradle.GetInstancesTest.singleClass.executor": "Run",
+    "Gradle.GetInstancesTest.unionClasses.executor": "Run",
+    "Gradle.Reasoner [:Main.main()].executor": "Run",
+    "Gradle.Reasoner [jacocoTestCoverageVerification].executor": "Run",
+    "Gradle.Reasoner [jacocoTestReport].executor": "Run",
+    "Gradle.Reasoner [javadoc].executor": "Run",
+    "Gradle.Reasoner [test jacocoTestReport sonarqube].executor": "Run",
+    "Gradle.Reasoner [wrapper].executor": "Run",
+    "Gradle.Tests in 'sswr.test'.executor": "Coverage",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "develop",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Doo5i/git/Simple-semnatic-reasoner/build.gradle",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Doo5i\git\Simple-semnatic-reasoner\Reasoner\src\test\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Doo5i\git\Simple-semnatic-reasoner\Reasoner\src\test\resources" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle jacocoTestReport" />
+      <command value="gradle jacocoTestCoverageVerification" />
+      <command value="gradle test jacocoTestReport sonarqube" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Gradle.Reasoner [test jacocoTestReport sonarqube]">
+    <configuration name="GetInstancesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;GetInstancesTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetInstancesTest.intersectingClasses" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;GetInstancesTest.intersectingClasses&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetInstancesTest.singleClass" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;GetInstancesTest.singleClass&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Reasoner [test jacocoTestReport sonarqube]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+            <option value="jacocoTestReport" />
+            <option value="sonarqube" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'sswr.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Reasoner [test jacocoTestReport sonarqube]" />
+        <item itemvalue="Gradle.Tests in 'sswr.test'" />
+        <item itemvalue="Gradle.GetInstancesTest" />
+        <item itemvalue="Gradle.GetInstancesTest.intersectingClasses" />
+        <item itemvalue="Gradle.GetInstancesTest.singleClass" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-16.0.2-corretto-16.0.2-4caba194b151-cab9e76a" />
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ae252807-faf8-4e28-99c6-74d176a96162" name="Changes" comment="" />
-      <created>1706365558128</created>
+      <changelist id="e53688e0-39dd-462c-9d8d-aa325dcbdf4c" name="Changes" comment="" />
+      <created>1706365571428</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1706365558128</updated>
-      <workItem from="1706365559250" duration="12000" />
+      <updated>1706365571428</updated>
+      <workItem from="1706365572541" duration="153000" />
+      <workItem from="1706365753131" duration="1111000" />
+      <workItem from="1707845901454" duration="9000" />
+      <workItem from="1709029672771" duration="17043000" />
+      <workItem from="1709074805818" duration="19000" />
+      <workItem from="1709906563220" duration="110000" />
+      <workItem from="1710150732185" duration="653000" />
+      <workItem from="1710152911493" duration="354000" />
+      <workItem from="1710153275091" duration="1615000" />
+      <workItem from="1710157495391" duration="10823000" />
+      <workItem from="1710239341146" duration="2418000" />
+      <workItem from="1710427604160" duration="3282000" />
+      <workItem from="1711012866652" duration="11332000" />
+      <workItem from="1711050627940" duration="10307000" />
+      <workItem from="1711385585165" duration="3223000" />
+      <workItem from="1711453220686" duration="6387000" />
+      <workItem from="1711538516343" duration="1403000" />
+      <workItem from="1711634715905" duration="12178000" />
+      <workItem from="1712057580652" duration="13745000" />
+      <workItem from="1712145339528" duration="2337000" />
+      <workItem from="1712238846944" duration="10859000" />
+      <workItem from="1712575815693" duration="1488000" />
+      <workItem from="1712584190515" duration="784000" />
+      <workItem from="1712584982835" duration="824000" />
+      <workItem from="1712597383828" duration="8000" />
+      <workItem from="1714133508868" duration="1368000" />
+      <workItem from="1714384036986" duration="865000" />
+      <workItem from="1715110975323" duration="209000" />
+      <workItem from="1716808703434" duration="15287000" />
+      <workItem from="1716901280773" duration="5989000" />
+      <workItem from="1716910092957" duration="1001000" />
+      <workItem from="1716911194774" duration="58000" />
     </task>
+    <task id="LOCAL-00001" summary="Implemented first methods">
+      <created>1709049124184</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709049124185</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[Feat] Added Components &#10;Implemented Sub/Superclasses">
+      <option name="closed" value="true" />
+      <created>1710173897223</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710173897223</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[Feat] Added Components &#10;Implemented DisjointClassRetriever and EquivalentClassRetriever">
+      <option name="closed" value="true" />
+      <created>1711022200727</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711022200727</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[CHORE] Delete Duplicate Files">
+      <option name="closed" value="true" />
+      <created>1711022311910</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711022311910</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[CHORE] Delete Duplicate Files">
+      <option name="closed" value="true" />
+      <created>1711544015877</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711544015877</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[CHORE] Instance Retriever is now working properly">
+      <option name="closed" value="true" />
+      <created>1712067057452</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712067057452</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[CHORE] Added Transitive Properties as well as logging">
+      <option name="closed" value="true" />
+      <created>1712257033786</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712257033786</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[CHORE] Added More Logging">
+      <option name="closed" value="true" />
+      <created>1712577192740</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712577192740</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[CHORE] Added More Logging">
+      <option name="closed" value="true" />
+      <created>1712577264395</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712577264395</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[CHORE] Added Documentation">
+      <option name="closed" value="true" />
+      <created>1716822627501</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716822627501</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[CHORE] Added README.md">
+      <option name="closed" value="true" />
+      <created>1716911092663</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716911092663</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemented first methods" />
+    <MESSAGE value="[Feat] Added Components &#10;Implemented Sub/Superclasses" />
+    <MESSAGE value="[Feat] Added Components &#10;Implemented DisjointClassRetriever and EquivalentClassRetriever" />
+    <MESSAGE value="[CHORE] Delete Duplicate Files" />
+    <MESSAGE value="[CHORE] Instance Retriever is now working properly" />
+    <MESSAGE value="[CHORE] Added Transitive Properties as well as logging" />
+    <MESSAGE value="[CHORE] Added More Logging" />
+    <MESSAGE value="[CHORE] Added Documentation" />
+    <MESSAGE value="[CHORE] Added README.md" />
+    <MESSAGE value="[CHORE] change folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CHORE] change folder" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>165</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>167</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>170</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>171</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>172</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>173</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>180</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/reasoner/components/implementations/SimpleInstanceRetriever.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sswr$Tests_in__sswr_test_.ic" NAME="Tests in 'sswr.test' Coverage Results" MODIFIED="1716907240157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sswr$EntailmentTest.ic" NAME="EntailmentTest Coverage Results" MODIFIED="1712145928962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
