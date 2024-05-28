@@ -52,7 +52,7 @@ public class Reasoner implements ALCReasoner {
     @Override
     @ParametersAreNonnullByDefault
     public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean b) {
-        return new SimpleInstanceRetriever(ontology, df).getInstances(owlClassExpression, b);
+        return new SimpleInstanceRetriever(this, ontology, df).getInstances(owlClassExpression, b);
     }
 
     /**

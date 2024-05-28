@@ -9,7 +9,7 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger("Main");
 
 
-    private static final String FILEPATH = "src/main/resources/family_dim.owl";
+    private static final String FILEPATH = "src/main/resources/family_base.owl";
     public static void main(String[] args) throws OWLOntologyCreationException {
         OWLOntology ontology = new Reader().read(FILEPATH);
         OWLOntologyManager manager = ontology.getOWLOntologyManager();
@@ -23,6 +23,11 @@ public class Main {
 
         // Individual Class Assertion Axioms
 
+        OWLNamedIndividual justin = factory.getOWLNamedIndividual(IOR + "#Justin");
+        OWLClassExpression parent = factory.getOWLClass(IOR + "#Parent");
+        logger.info(String.valueOf(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(parent, justin))));
+
+/*
         OWLNamedIndividual rolt = factory.getOWLNamedIndividual(IOR + "#Rolt");
         OWLObjectProperty hasAncestor = factory.getOWLObjectProperty(IOR + "#hasAncestor");
         OWLNamedIndividual annika = factory.getOWLNamedIndividual(IOR + "#Annika");
@@ -42,7 +47,7 @@ public class Main {
 
         OWLClassExpression hasValueExpression = factory.getOWLObjectHasValue(factory.getOWLObjectProperty(IOR + "#hasChild"), annika);
         logger.info(reasoner.getInstances(hasValueExpression).toString());
-        /*System.out.println(reasoner.isEntailed(factory.getOWLEquivalentClassesAxiom(hasGrandChildExpression, expression)));
+        System.out.println(reasoner.isEntailed(factory.getOWLEquivalentClassesAxiom(hasGrandChildExpression, expression)));
         OWLObjectPropertyAssertionAxiom assertionAxiom = factory.getOWLObjectPropertyAssertionAxiom(
                 factory.getOWLObjectProperty(property), rolt, factory.getOWLNamedIndividual(IOR + "#Annika")
         );

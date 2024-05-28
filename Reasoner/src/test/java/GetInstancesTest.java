@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GetInstancesTest {
 
-    private static final String FILEPATH = "src/main/resources/PaNET.owl";
+    private static final String FILEPATH = "src/test/resources/PaNET.owl";
     private static Reasoner reasoner;
     private static OWLDataFactory factory;
     private static IRI IOR;
@@ -36,7 +36,7 @@ public class GetInstancesTest {
     @Test
     public void singleClass(){
         OWLClass cl1 = factory.getOWLClass(IOR + "PaNET00001");
-        NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(cl1);
+        NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(cl1, false);
         assertEquals(4,individuals.getNodes().size());
     }
     @Test

@@ -11,8 +11,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * For each possible axiom type, a custom method to check whether an axiom of that type is entailed.
+ *
+ */
 public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
-
     OWLOntology ontology;
 
     /**
@@ -35,26 +38,6 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
 
     //_____               TRIVIAL AXIOMS              ___________________
     @ParametersAreNonnullByDefault
-    public Boolean visit(OWLAnnotationAssertionAxiom axiom) {
-        return Boolean.TRUE;
-    }
-
-    @ParametersAreNonnullByDefault
-    public Boolean visit(OWLSubAnnotationPropertyOfAxiom axiom) {
-        return Boolean.TRUE;
-    }
-
-    @ParametersAreNonnullByDefault
-    public Boolean visit(OWLAnnotationPropertyDomainAxiom axiom) {
-        return Boolean.TRUE;
-    }
-
-    @ParametersAreNonnullByDefault
-    public Boolean visit(OWLAnnotationPropertyRangeAxiom axiom) {
-        return Boolean.TRUE;
-    }
-
-    @ParametersAreNonnullByDefault
     public Boolean visit(OWLDeclarationAxiom axiom) {
         return Boolean.TRUE;
     }
@@ -63,8 +46,8 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     //______              ASSERTIONS            _____
     /**
      * Two Concepts are equivalent if they have the same extension, i.e. they all instance the same individuals
-     * @param axiom
-     * @return
+     * @param axiom Axiom which is supposed to be entailed.
+     * @return Boolean representing whether the axiom is entailed.
      */
     public Boolean visit(OWLEquivalentClassesAxiom axiom) {
         logger.info("Visiting Equivalent Classes Axiom");
@@ -75,9 +58,10 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
 
     /**
      * Two classes can be defined as disjoint of their extensions have no intersection
-     * @param axiom
-     * @return
+     * @param axiom Axiom which is supposed to be entailed.
+     * @return Boolean representing whether the axiom is entailed.
      */
+    @ParametersAreNonnullByDefault
     public Boolean visit(OWLDisjointClassesAxiom axiom){
         System.out.println(axiom);
         Set<OWLClassExpression> ceSet = axiom.getClassExpressions();
@@ -96,7 +80,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     /**
      * Concept ce1 is subClass of Concept ce2 if all instances of ce1 are also instances of ce2
      * @param axiom axiom to visit
-     * @return
+     * @return Boolean representing whether the axiom is entailed.
      */
     public Boolean visit(OWLSubClassOfAxiom axiom){
         OWLClassExpression subClass = axiom.getSubClass();
@@ -111,7 +95,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     /**
      * Checks whether the Object Property is Transitive, and if so, checks whether the Assertion is entailed through the Transitivity
      * @param axiom axiom to visit
-     * @return
+     * @return Boolean representing whether the axiom is entailed.
      */
     public Boolean visit(OWLObjectPropertyAssertionAxiom axiom){
         logger.info("Visiting Object Property Assertion Axioms");
@@ -158,7 +142,6 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     public Boolean visit(OWLClassAssertionAxiom axiom) {
         logger.info("Visiting Class Assertion Axiom");
         OWLNamedIndividual individual = axiom.getIndividual().asOWLNamedIndividual();
-        Set<OWLClassAssertionAxiom> classAssertionsOfIndividual = ontology.getClassAssertionAxioms(individual);
         OWLClassExpression axiomClassExpression = axiom.getClassExpression();
         logger.info("Individual: {}",  individual);
         logger.info("Class Expression: {}", axiomClassExpression);
@@ -190,6 +173,13 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         };
     }
 
+    /**
+     * Checks whether a named individual is part of any class expression which is part of the union.
+     * @param ontology underlying ontology used by the reasoner.
+     * @param axiomClass Class expression representing a union of classes.
+     * @param individual Named individual which is supposed to be checked.
+     * @return Boolean representing whether the named individual is in any class expression.
+     */
     private Boolean equivalentForUnion(OWLOntology ontology, OWLObjectUnionOf axiomClass, OWLNamedIndividual individual) {
         Set<OWLClassExpression> equivalentClassExpressions = getEquivalentClassesOfComplexClassExpression(ontology, axiomClass);
         for(OWLClassExpression expression : equivalentClassExpressions){
@@ -198,10 +188,11 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         return Boolean.FALSE;
     }
     /**
-     *
-     * @param ontology
-     * @param axiomClass
-     * @return
+     * Checks whether a named individual is part of all class expression which are part of the intersection.
+     * @param ontology underlying ontology used by the reasoner.
+     * @param axiomClass Class expression representing an intersection of classes.
+     * @param individual Named individual which is supposed to be checked.
+     * @return Boolean representing whether the named individual is in all class expression.
      */
     private Boolean equivalentForIntersection(OWLOntology ontology, OWLObjectIntersectionOf axiomClass, OWLNamedIndividual individual) {
         Set<OWLClassExpression> equivalentClassExpressions = getEquivalentClassesOfComplexClassExpression(ontology, axiomClass);
@@ -212,13 +203,22 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
 
     }
 
+    /**
+     * Finds all equivalent classes for a OWLClass axiom. If the individual in question is instance of any
+     * of the equivalent classes, it is also instance of the class in question.
+     * @param ontology underlying ontology used by the reasoner.
+     * @param axiomClass Class expression representing a single class.
+     * @param individual Named individual which is supposed to be checked.
+     * @return Boolean representing whether the named individual is in any class expression.
+     */
     private Boolean equivalentForClass(OWLOntology ontology, OWLClass axiomClass, OWLNamedIndividual individual){
         Set<OWLEquivalentClassesAxiom> equivalentClassesAxiomSet = ontology.getEquivalentClassesAxioms(axiomClass);
+        logger.info("Found equivalent classes: {}", equivalentClassesAxiomSet);
         // If individual is instance of equivalent class -> instance of asserted class
         for (OWLEquivalentClassesAxiom axiom : equivalentClassesAxiomSet){
             for (OWLClassExpression expression : axiom.getClassExpressions()){
                 try {
-                    Set<OWLNamedIndividual> instancesOfEquivalentClass = reasoner.getInstances(expression).getFlattened();
+                    Set<OWLNamedIndividual> instancesOfEquivalentClass = reasoner.getInstances(expression, true).getFlattened();
                     if (instancesOfEquivalentClass.contains(individual)) return Boolean.TRUE;
                 }
                 catch(Exception ignored){
@@ -238,12 +238,24 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         return false;
     }
 
+    /**
+     * Reduce Function for Sets
+     * @param accumulator Accumulator which holds the result
+     * @param value to be added to the Accumulator
+     * @return Reduced Set
+     */
     private static Set<OWLClass> reduceSets(Set<OWLClass> accumulator, Set<OWLClass> value) {
         accumulator.addAll(value);
         return accumulator;
     }
 
-
+    /**
+     * For all classes a named individual is instance of, find all of their super classes.
+     * @param ontology underlying ontology used by the reasoner.
+     * @param ind named individual in question.
+     * @param reasoner the Reasoner used to get the super classes
+     * @return set of all super classes
+     */
     private static Set<OWLClass> getSuperClassesOfNI(OWLOntology ontology, OWLNamedIndividual ind, Reasoner reasoner) {
         Set<OWLClassAssertionAxiom> axiomSet = ontology.getClassAssertionAxioms(ind);
         return axiomSet.stream()
@@ -258,6 +270,12 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
                 );
     }
 
+    /**
+     * Retrieves all equivalent classes for a complex class expression.
+     * @param ontology underlying ontology used by the reasoner.
+     * @param axiomClass the complex class expression in question.
+     * @return Set of OWLClassExpressions which are equivalent to the axiom class.
+     */
     private static Set<OWLClassExpression> getEquivalentClassesOfComplexClassExpression(OWLOntology ontology, OWLClassExpression axiomClass) {
         Set<OWLAxiom> declarations = ontology.getAxioms().stream().filter(owlAxiom -> owlAxiom.getAxiomType().equals(AxiomType.DECLARATION)).collect(Collectors.toSet());
         Set<OWLClassExpression> equivalentClassExpressions = new HashSet<>();

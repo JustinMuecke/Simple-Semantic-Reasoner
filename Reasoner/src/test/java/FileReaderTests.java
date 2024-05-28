@@ -11,7 +11,7 @@ public class FileReaderTests {
     public void readFileTest(){
         FileReader fileReader = new Reader();
         try {
-            OWLOntology ontology = fileReader.read("src/main/resources/PaNET.owl");
+            OWLOntology ontology = fileReader.read("src/test/resources/PaNET.owl");
             System.out.println(ontology);
             assertNotNull(ontology);
         }catch(Exception e){

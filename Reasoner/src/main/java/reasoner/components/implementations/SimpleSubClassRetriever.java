@@ -1,12 +1,11 @@
 package reasoner.components.implementations;
 
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLClassExpression;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.impl.DefaultNodeSet;
 import org.semanticweb.owlapi.reasoner.impl.OWLClassNodeSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reasoner.components.SubClassRetriever;
 
 import java.util.HashSet;
@@ -15,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class SimpleSubClassRetriever implements SubClassRetriever {
 
+    private final Logger logger = LoggerFactory.getLogger(SimpleSubClassRetriever.class.toString());
     private final OWLOntology ontology;
 
     public SimpleSubClassRetriever(OWLOntology ontology) {
@@ -32,11 +32,10 @@ public class SimpleSubClassRetriever implements SubClassRetriever {
     @Override
     public NodeSet<OWLClass> getSubClasses(OWLClassExpression owlClassExpression, boolean onlyDirectSubClasses) {
 
-        OWLClass rootClass = owlClassExpression.asOWLClass();
-        Set<OWLClass> nextLevelSubClasses = new HashSet<>();
+        Set<OWLClassExpression> nextLevelSubClasses = new HashSet<>();
         Set<OWLSubClassOfAxiom> axioms = new HashSet<>();
         DefaultNodeSet<OWLClass> result = new OWLClassNodeSet();
-        nextLevelSubClasses.add(rootClass);
+        nextLevelSubClasses.add(owlClassExpression);
 
         do{
             axioms.clear();
@@ -52,9 +51,16 @@ public class SimpleSubClassRetriever implements SubClassRetriever {
      * @param nextLevelSubClasses classes in current iteration.
      * @param axioms the subclass axioms which contain one of the classes in the current iteration.
      */
-    private void getSubClassAxioms(Set<OWLClass> nextLevelSubClasses, Set<OWLSubClassOfAxiom> axioms) {
-        for(OWLClass cls : nextLevelSubClasses){
-            axioms.addAll(ontology.getSubClassAxiomsForSuperClass(cls));
+    private void getSubClassAxioms(Set<OWLClassExpression> nextLevelSubClasses, Set<OWLSubClassOfAxiom> axioms) {
+        for(OWLClassExpression ce : nextLevelSubClasses){
+            //axioms.addAll(ontology.getSubClassAxiomsForSuperClass(ce));
+            Set<OWLSubClassOfAxiom> subClassOfAxioms = ontology.getAxioms(AxiomType.SUBCLASS_OF);
+            for(var axiom : subClassOfAxioms){
+                logger.debug(axiom.toString());
+                if(axiom.getSuperClass().equals(ce)){
+                    axioms.add(axiom);
+                }
+            }
         }
     }
     /**
@@ -63,14 +69,13 @@ public class SimpleSubClassRetriever implements SubClassRetriever {
      * @param nextLevelSubClasses should be empty when method is called, afterward contains all classes of the next iteration.
      * @param result contains all ancestors found up to this point.
      */
-    private static void getNextLevelSubClasses(Set<OWLSubClassOfAxiom> axioms, Set<OWLClass> nextLevelSubClasses, DefaultNodeSet<OWLClass> result) {
+    private static void getNextLevelSubClasses(Set<OWLSubClassOfAxiom> axioms, Set<OWLClassExpression> nextLevelSubClasses, DefaultNodeSet<OWLClass> result) {
         for(OWLSubClassOfAxiom axiom : axioms){
-            nextLevelSubClasses.addAll(axiom
-                    .getClassesInSignature()
-                    .stream()
-                    .filter(c -> !result.containsEntity(c))
-                    .collect(Collectors.toSet()));
-            result.addDifferentEntities(nextLevelSubClasses);
+            OWLClassExpression ce = axiom.getSubClass();
+            nextLevelSubClasses.add(ce);
+            if(ce.getClassExpressionType().equals(ClassExpressionType.OWL_CLASS)){
+                result.addEntity((OWLClass) axiom.getSubClass());
+            }
         }
     }
 }

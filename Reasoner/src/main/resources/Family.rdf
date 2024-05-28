@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family/"
+     xml:base="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:Family="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild"/>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasSex -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasSex"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child"/>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#GrandParent">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasGrandChild"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Male">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Mother">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#hasChild"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Sex"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika">
+        <rdf:type rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Child"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Hanna">
+        <rdf:type rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Female"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent"/>
+        <Family:hasChild rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Father"/>
+        <Family:hasChild rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Annika"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Rolt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Parent"/>
+        <Family:hasChild rdf:resource="http://www.semanticweb.org/doo5i/ontologies/2024/2/Family#Justin"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

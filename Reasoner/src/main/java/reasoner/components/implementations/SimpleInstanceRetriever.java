@@ -8,17 +8,19 @@ import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNodeSet;
 import org.semanticweb.owlapi.util.EscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reasoner.ALCReasoner;
 import reasoner.components.InstanceRetriever;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class SimpleInstanceRetriever implements InstanceRetriever {
-
+    ALCReasoner reasoner;
     OWLOntology ontology;
     OWLDataFactory df;
     private static final Logger logger = LoggerFactory.getLogger("SimpleInstanceRetriever");
-    public SimpleInstanceRetriever(OWLOntology ontology, OWLDataFactory df){
+    public SimpleInstanceRetriever(ALCReasoner reasoner, OWLOntology ontology, OWLDataFactory df){
+        this.reasoner = reasoner;
         this.ontology = ontology;
         this.df = df;
     }
@@ -33,13 +35,31 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
      */
     @Override
     public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean onlyDirect) {
+
+
+
+        if(onlyDirect) return getInstance(owlClassExpression);
+        Set<OWLClass> allClasses = reasoner.getSubClasses(owlClassExpression, false).getFlattened();
+        Set<OWLNamedIndividual> results = new HashSet<>(getInstance(owlClassExpression).getFlattened());
+        for(OWLClass cls : allClasses){
+            results.addAll(getInstance(cls).getFlattened());
+        }
+        DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
+        result.addDifferentEntities(results);
+        return result;
+    }
+
+    private NodeSet<OWLNamedIndividual> getInstance(OWLClassExpression owlClassExpression){
         return switch (owlClassExpression.getClassExpressionType()) {
             case OWL_CLASS -> getSingleClassExtension((OWLClass) owlClassExpression);
-            case OBJECT_INTERSECTION_OF -> getIntersectionClassExtension((OWLObjectIntersectionOf) owlClassExpression);
+            case OBJECT_INTERSECTION_OF ->
+                    getIntersectionClassExtension((OWLObjectIntersectionOf) owlClassExpression);
             case OBJECT_UNION_OF -> getUnionClassExtension((OWLObjectUnionOf) owlClassExpression);
             case OBJECT_COMPLEMENT_OF -> getComplementClassExtension((OWLObjectComplementOf) owlClassExpression);
-            case OBJECT_SOME_VALUES_FROM -> getObjectSomeValueFromExtension((OWLObjectSomeValuesFrom) owlClassExpression);
-            case OBJECT_ALL_VALUES_FROM -> getObjectAllValueFromExtension((OWLObjectAllValuesFrom) owlClassExpression);
+            case OBJECT_SOME_VALUES_FROM ->
+                    getObjectSomeValueFromExtension((OWLObjectSomeValuesFrom) owlClassExpression);
+            case OBJECT_ALL_VALUES_FROM ->
+                    getObjectAllValueFromExtension((OWLObjectAllValuesFrom) owlClassExpression);
             case OBJECT_HAS_VALUE -> getObjectHasValueExtension((OWLObjectHasValue) owlClassExpression);
             default -> null;
         };
@@ -54,6 +74,7 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
     private NodeSet<OWLNamedIndividual> getSingleClassExtension(OWLClass owlClass) {
 
         DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
+        Set<OWLClassAssertionAxiom> axioms = ontology.getClassAssertionAxioms(owlClass);
         Set<OWLNamedIndividual> extension = ontology.classAssertionAxioms(owlClass)
                 .map(HasIndividualsInSignature::getIndividualsInSignature)
                 .reduce(new HashSet<>(), (acc, val) -> {
@@ -72,10 +93,17 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
      */
     private NodeSet<OWLNamedIndividual> getIntersectionClassExtension(OWLObjectIntersectionOf owlClassExpression) {
         Set<OWLClassExpression> components =  owlClassExpression.getOperands();
-        Set<NodeSet<OWLNamedIndividual>> toIntersect = components.stream().map(ce -> getInstances(ce, true)).collect(Collectors.toSet());
+        Set<NodeSet<OWLNamedIndividual>> toIntersect = components.stream().map(ce -> getInstances(ce, false)).collect(Collectors.toSet());
         Iterator<NodeSet<OWLNamedIndividual>> iter = toIntersect.iterator();
-        NodeSet<OWLNamedIndividual> res = iter.next();
-        NodeSet<OWLNamedIndividual> current = iter.next();
+        NodeSet<OWLNamedIndividual> res;
+        NodeSet<OWLNamedIndividual> current;
+        try {
+            res = iter.next();
+            current = iter.next();
+        } catch (NoSuchElementException nsee){
+            return new OWLNamedIndividualNodeSet();
+        }
+        if (res == null ||current == null) return new OWLNamedIndividualNodeSet();
         do{
             res = new OWLNamedIndividualNodeSet(current.getFlattened()
                     .stream()
