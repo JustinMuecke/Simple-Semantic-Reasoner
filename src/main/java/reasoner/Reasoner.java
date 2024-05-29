@@ -4,6 +4,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reasoner.components.EntailmentChecker;
 import reasoner.components.implementations.*;
 
@@ -11,7 +13,7 @@ import java.util.*;
 
 public class Reasoner implements ALCReasoner {
 
-
+    private final Logger logger = LoggerFactory.getLogger(Reasoner.class.toString());
     private final OWLOntology ontology;
     private final OWLDataFactory df;
     private final List<OWLOntologyChange> ontologyChanges;
@@ -231,6 +233,7 @@ public class Reasoner implements ALCReasoner {
                 if (change.isRemoveAxiom()) ontology.remove(change.getAxiom());
             }
         } catch (Exception ignored){
+            logger.info("Applying Changes failed.");
         }
     }
 

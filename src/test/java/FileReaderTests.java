@@ -5,10 +5,10 @@ import org.semanticweb.owlapi.model.OWLOntology;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FileReaderTests {
+class FileReaderTests {
 
     @Test
-    public void readFileTest(){
+    void readFileTest(){
         FileReader fileReader = new Reader();
         try {
             OWLOntology ontology = fileReader.read("src/test/resources/PaNET.owl");

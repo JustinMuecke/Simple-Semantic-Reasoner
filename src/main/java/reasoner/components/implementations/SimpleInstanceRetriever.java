@@ -5,7 +5,6 @@ import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.impl.DefaultNodeSet;
 import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNode;
 import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNodeSet;
-import org.semanticweb.owlapi.util.EscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reasoner.ALCReasoner;
@@ -36,10 +35,10 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
     @Override
     public NodeSet<OWLNamedIndividual> getInstances(OWLClassExpression owlClassExpression, boolean onlyDirect) {
 
-
-
         if(onlyDirect) return getInstance(owlClassExpression);
+        logger.info("Getting subclasses of {}", owlClassExpression);
         Set<OWLClass> allClasses = reasoner.getSubClasses(owlClassExpression, false).getFlattened();
+        logger.info("Getting instances of {} and all subclasses", owlClassExpression);
         Set<OWLNamedIndividual> results = new HashSet<>(getInstance(owlClassExpression).getFlattened());
         for(OWLClass cls : allClasses){
             results.addAll(getInstance(cls).getFlattened());
@@ -61,7 +60,7 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
             case OBJECT_ALL_VALUES_FROM ->
                     getObjectAllValueFromExtension((OWLObjectAllValuesFrom) owlClassExpression);
             case OBJECT_HAS_VALUE -> getObjectHasValueExtension((OWLObjectHasValue) owlClassExpression);
-            default -> null;
+            default -> new OWLNamedIndividualNodeSet();
         };
     }
 
@@ -72,9 +71,8 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
      * @return NodeSet of all named individuals.
      */
     private NodeSet<OWLNamedIndividual> getSingleClassExtension(OWLClass owlClass) {
-
+        logger.info("Getting Instances of a OWLClass");
         DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
-        Set<OWLClassAssertionAxiom> axioms = ontology.getClassAssertionAxioms(owlClass);
         Set<OWLNamedIndividual> extension = ontology.classAssertionAxioms(owlClass)
                 .map(HasIndividualsInSignature::getIndividualsInSignature)
                 .reduce(new HashSet<>(), (acc, val) -> {
@@ -92,8 +90,10 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
      * @return NodeSet of all named individuals which are part of all class expression contained in the OWLObjectIntersectionOf class expression
      */
     private NodeSet<OWLNamedIndividual> getIntersectionClassExtension(OWLObjectIntersectionOf owlClassExpression) {
+        logger.info("Getting instances of an intersection of classes.");
         Set<OWLClassExpression> components =  owlClassExpression.getOperands();
         Set<NodeSet<OWLNamedIndividual>> toIntersect = components.stream().map(ce -> getInstances(ce, false)).collect(Collectors.toSet());
+        logger.info("Retrieved all instances.");
         Iterator<NodeSet<OWLNamedIndividual>> iter = toIntersect.iterator();
         NodeSet<OWLNamedIndividual> res;
         NodeSet<OWLNamedIndividual> current;
@@ -104,6 +104,7 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
             return new OWLNamedIndividualNodeSet();
         }
         if (res == null ||current == null) return new OWLNamedIndividualNodeSet();
+        logger.info("Finding all instances which are in all classes.");
         do{
             res = new OWLNamedIndividualNodeSet(current.getFlattened()
                     .stream()
@@ -119,8 +120,10 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
      * @return NodeSet of all named individuals which are part of any class expression contained in the OWLObjectUnionOf class expression
      */
     private NodeSet<OWLNamedIndividual> getUnionClassExtension(OWLObjectUnionOf owlClassExpression) {
+        logger.info("Getting instances of a union of classes.");
         Set<OWLClassExpression> components =  owlClassExpression.getOperands();
         Set<NodeSet<OWLNamedIndividual>> toUnion = components.stream().map(ce -> getInstances(ce, true)).collect(Collectors.toSet());
+        logger.info("Retrieved all instances, combining to single set.");
         return new OWLNamedIndividualNodeSet(toUnion.stream()
                 .map(NodeSet::getFlattened)
                 .flatMap(Collection::stream)
@@ -135,6 +138,7 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
      * @return NodeSet of all found named individuals.
      */
     private NodeSet<OWLNamedIndividual> getComplementClassExtension(OWLObjectComplementOf expression){
+        logger.info("Getting instances of a complement of a class.");
         Set<OWLClassExpression> classExpressions = expression.getNestedClassExpressions().stream().filter(ce -> !ce.equals(expression)).collect(Collectors.toSet());
         Iterator<OWLClassExpression> iter = classExpressions.iterator();
         OWLClassExpression subject = iter.next();
@@ -143,11 +147,11 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
             if(subject.getNestedClassExpressions().contains(next)) continue;
             subject = next;
         }
-        System.out.println("SUBJECT");
-        System.out.println(subject);
+        logger.info("Get instances of the class which is to be negated.");
         NodeSet<OWLNamedIndividual> complement = this.getInstances(subject, true);
         Set<OWLNamedIndividual> extension = new HashSet<>();
         Set<OWLDeclarationAxiom> declarationAxioms = ontology.getAxioms(AxiomType.DECLARATION).stream().filter(axiom -> !axiom.getIndividualsInSignature().isEmpty()).collect(Collectors.toSet());
+        logger.info("Finding all individuals which are not instance of class.");
         for (OWLDeclarationAxiom declarationAxiom : declarationAxioms){
             //Decleration has either 1 or 0 individuals in Signature
             for(OWLNamedIndividual individual : declarationAxiom.getIndividualsInSignature()){
@@ -180,17 +184,15 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
         logger.info("Found Instances satisfying Object: {}", possibleIndividuals);
         Set<OWLObjectPropertyAssertionAxiom> propertyAssertionAxioms = ontology.axioms().filter(axiom -> axiom.getAxiomType()
                 .equals(AxiomType.OBJECT_PROPERTY_ASSERTION))
-                .map(axiom -> (OWLObjectPropertyAssertionAxiom) axiom)
+                .map(OWLObjectPropertyAssertionAxiom.class::cast)
                 .collect(Collectors.toSet());
         logger.info("Finding all Individuals with desired Property to at least one Instance of Object");
         for(OWLObjectPropertyAssertionAxiom axiom : propertyAssertionAxioms){
             OWLIndividual axiomSubject = axiom.getSubject();
             OWLIndividual axiomObject = axiom.getObject();
             OWLPropertyExpression axiomProperty = axiom.getProperty();
-            if(axiom.getSubject().isNamed()){
-                if(axiomProperty.equals(property)){
-                    if(possibleIndividuals.containsEntity(axiomObject.asOWLNamedIndividual())) extension.add(axiomSubject.asOWLNamedIndividual());
-                }
+            if(axiom.getSubject().isNamed() && axiomProperty.equals(property) && possibleIndividuals.containsEntity(axiomObject.asOWLNamedIndividual())){
+                extension.add(axiomSubject.asOWLNamedIndividual());
             }
         }
         DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
@@ -210,7 +212,9 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
         OWLClassExpression subject = iter.next();
         while(iter.hasNext()){
             OWLClassExpression next = iter.next();
-            if(subject.getNestedClassExpressions().contains(next)) continue;
+            if(subject.getNestedClassExpressions().contains(next)) {
+                continue;
+            }
             subject = next;
         }
         logger.info("Property: {}", property);
@@ -221,34 +225,38 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
 
         Set<OWLObjectPropertyAssertionAxiom> propertyAssertionAxioms = ontology.axioms().filter(axiom -> axiom.getAxiomType()
                         .equals(AxiomType.OBJECT_PROPERTY_ASSERTION))
-                .map(axiom -> (OWLObjectPropertyAssertionAxiom) axiom)
+                .map(OWLObjectPropertyAssertionAxiom.class::cast)
                 .collect(Collectors.toSet());
         HashMap<OWLNamedIndividual, Set<OWLNamedIndividual>> association= new HashMap<>();
         logger.info("Finding all Individuals with desired Property");
         for(OWLObjectPropertyAssertionAxiom axiom : propertyAssertionAxioms){
-            if(axiom.getSubject().isNamed()){
-                OWLNamedIndividual axiomSubject = axiom.getSubject().asOWLNamedIndividual();
-                OWLNamedIndividual axiomObject = axiom.getObject().asOWLNamedIndividual();
-                OWLPropertyExpression axiomProperty = axiom.getProperty();
-                if(axiomProperty.equals(property)){
-                    if(association.containsKey(axiomSubject)){
-                        Set<OWLNamedIndividual> current = association.get(axiomSubject);
-                        current.add(axiomObject);
-                        association.replace(axiomSubject, current);
-                        continue;
-                    }
+            if(!axiom.getSubject().isNamed()) continue;
+
+            OWLNamedIndividual axiomSubject = axiom.getSubject().asOWLNamedIndividual();
+            OWLNamedIndividual axiomObject = axiom.getObject().asOWLNamedIndividual();
+            OWLPropertyExpression axiomProperty = axiom.getProperty();
+
+            if(axiomProperty.equals(property)){
+                if(association.containsKey(axiomSubject)){
+                    Set<OWLNamedIndividual> current = association.get(axiomSubject);
+                    current.add(axiomObject);
+                    association.replace(axiomSubject, current);
+                }
+                else{
                     Set<OWLNamedIndividual> newEntry =new HashSet<>();
                     newEntry.add(axiomObject);
                     association.put(axiomSubject, newEntry);
-
                 }
+
             }
+
         }
         logger.info("Possible Individuals: {}", association.keySet());
         logger.info("Check whether Individuals are related to all Instances of Object");
-        for (OWLNamedIndividual possibleInstance : association.keySet()){
-            if(possibleIndividuals.getFlattened().containsAll(association.get(possibleInstance))){
-                extension.add(possibleInstance);
+
+        for(Map.Entry<OWLNamedIndividual, Set<OWLNamedIndividual>> entry : association.entrySet()){
+            if(possibleIndividuals.getFlattened().containsAll(entry.getValue())){
+                extension.add(entry.getKey());
             }
         }
         logger.info("Satisfied for Individuals: {}", extension);
@@ -267,12 +275,11 @@ public class SimpleInstanceRetriever implements InstanceRetriever {
         Set<OWLObjectPropertyAssertionAxiom> assertionAxioms = ontology.getAxioms(AxiomType.OBJECT_PROPERTY_ASSERTION);
         for(OWLObjectPropertyAssertionAxiom axiom : assertionAxioms){
             if(axiom.getObject().equals(owlClassExpression.getFiller()) &&
-                    axiom.getProperty().equals(owlClassExpression.getProperty())){
-                logger.info(axiom.toString());
-                if(axiom.getSubject().isNamed()) extension.add(axiom.getSubject().asOWLNamedIndividual());
+                    axiom.getProperty().equals(owlClassExpression.getProperty()) &&
+                    axiom.getSubject().isNamed()){
+                extension.add(axiom.getSubject().asOWLNamedIndividual());
             }
         }
-        logger.info(owlClassExpression.getFiller().toString());
         DefaultNodeSet<OWLNamedIndividual> result = new OWLNamedIndividualNodeSet();
         result.addDifferentEntities(extension);
         return result;

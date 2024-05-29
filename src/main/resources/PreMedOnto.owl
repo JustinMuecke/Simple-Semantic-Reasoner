@@ -7359,16 +7359,16 @@
     <!-- http://purl.obolibrary.org/obo/NCIT_C25562 -->
 
     <owl:Class rdf:about="&obo;NCIT_C25562">
-        <rdfs:label>Main</rdfs:label>
+        <rdfs:label>main.Main</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;NCIT_C27993"/>
-        <oboInOwl:hasExactSynonym>Main</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>main.Main</oboInOwl:hasExactSynonym>
         <obo:NCIT_NHC0>C25562</obo:NCIT_NHC0>
         <obo:NCIT_P106>Qualitative Concept</obo:NCIT_P106>
         <oboInOwl:hasExactSynonym>Predominant</oboInOwl:hasExactSynonym>
         <obo:IAO_0000115>Most important; principal.</obo:IAO_0000115>
         <obo:NCIT_P207>C1542147</obo:NCIT_P207>
-        <obo:NCIT_P108>Main</obo:NCIT_P108>
-        <obo:NCIT_P366>Main</obo:NCIT_P366>
+        <obo:NCIT_P108>main.Main</obo:NCIT_P108>
+        <obo:NCIT_P366>main.Main</obo:NCIT_P366>
         <obo:IAO_0000412 rdf:resource="&obo;ncit.owl"/>
     </owl:Class>
     

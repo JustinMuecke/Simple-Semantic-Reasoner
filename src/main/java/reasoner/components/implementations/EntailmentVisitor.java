@@ -37,6 +37,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     //__________________ VISITOR PATTERN METHODS ________________________
 
     //_____               TRIVIAL AXIOMS              ___________________
+    @Override
     @ParametersAreNonnullByDefault
     public Boolean visit(OWLDeclarationAxiom axiom) {
         return Boolean.TRUE;
@@ -49,10 +50,16 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @param axiom Axiom which is supposed to be entailed.
      * @return Boolean representing whether the axiom is entailed.
      */
+    @Override
     public Boolean visit(OWLEquivalentClassesAxiom axiom) {
         logger.info("Visiting Equivalent Classes Axiom");
         Set<OWLClassExpression> ceSet = axiom.getClassExpressions();
-        if(ceSet.stream().map(ce -> reasoner.getInstances(ce, false)).distinct().count() > 1) return Boolean.TRUE;
+        List<Set<OWLNamedIndividual>> individuals = ceSet.stream().map(ce -> reasoner.getInstances(ce, false).getFlattened()).toList();
+        logger.info("Retrieved instances of all classes");
+        if(individuals.get(0).equals(individuals.get(1))){
+            logger.info("Instances are equivalent.");
+            return Boolean.TRUE;
+        }
         return Boolean.FALSE;
     }
 
@@ -61,17 +68,20 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @param axiom Axiom which is supposed to be entailed.
      * @return Boolean representing whether the axiom is entailed.
      */
+    @Override
     @ParametersAreNonnullByDefault
     public Boolean visit(OWLDisjointClassesAxiom axiom){
-        System.out.println(axiom);
         Set<OWLClassExpression> ceSet = axiom.getClassExpressions();
         Set<NodeSet<OWLNamedIndividual>> extensions = ceSet.stream().map(ce -> reasoner.getInstances(ce)).collect(Collectors.toSet());
-
+        logger.info("Retrieved instances of all classes");
         Iterator<NodeSet<OWLNamedIndividual>> iter = extensions.iterator();
         NodeSet<OWLNamedIndividual> last = iter.next();
         while(extensions.iterator().hasNext()){
             NodeSet<OWLNamedIndividual> current = iter.next();
-            if(last.getFlattened().stream().anyMatch(c -> current.getFlattened().contains(c))) return Boolean.FALSE;
+            if(last.getFlattened().stream().anyMatch(c -> current.getFlattened().contains(c))){
+                logger.info("Classes share at least on instance, thus not disjointed.");
+                return Boolean.FALSE;
+            }
             last = current;
         }
         return Boolean.TRUE;
@@ -82,6 +92,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @param axiom axiom to visit
      * @return Boolean representing whether the axiom is entailed.
      */
+    @Override
     public Boolean visit(OWLSubClassOfAxiom axiom){
         OWLClassExpression subClass = axiom.getSubClass();
         OWLClassExpression superClass = axiom.getSuperClass();
@@ -97,10 +108,11 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @param axiom axiom to visit
      * @return Boolean representing whether the axiom is entailed.
      */
+    @Override
     public Boolean visit(OWLObjectPropertyAssertionAxiom axiom){
         logger.info("Visiting Object Property Assertion Axioms");
-        logger.info("Start: " + axiom.getSubject());
-        logger.info("Goal: " + axiom.getObject());
+        logger.info("Start: {}", axiom.getSubject());
+        logger.info("Goal: {}", axiom.getObject());
 
 
         Set<OWLObjectPropertyAssertionAxiom> objectPropertyAssertionAxioms = ontology.getAxioms(AxiomType.OBJECT_PROPERTY_ASSERTION);
@@ -127,8 +139,9 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
             transitiveIndividuals = new LinkedList<>(foundRelators);
 
         }
-        logger.info("Found Transitive Related Individuals: ");
-        logger.info(allConfirmedIndividuals.toString());
+        if(!allConfirmedIndividuals.isEmpty()) {
+            logger.info("Found Transitive Related Individuals: \n {}", allConfirmedIndividuals);
+        }
         return allConfirmedIndividuals.contains(axiom.getObject());
     }
 
@@ -139,6 +152,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
      * @param axiom Visited Axiom of type OWLClassAssertionAxiom
      * @return true if the axiom is entailed in the ontology
      */
+    @Override
     public Boolean visit(OWLClassAssertionAxiom axiom) {
         logger.info("Visiting Class Assertion Axiom");
         OWLNamedIndividual individual = axiom.getIndividual().asOWLNamedIndividual();
@@ -160,7 +174,9 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         try {
             logger.info("Found Super Classes: {}", superClasses);
             if (superClasses.contains(axiomClassExpression.asOWLClass())) return true;
-        } catch (ClassCastException ignored){}
+        } catch (ClassCastException e){
+            logger.info("Superclasses do not contained target class.");
+        }
 
         // If Asserted Class is Equivalent Class of a Class the Individual is already instance of return true
         // If Class Assertion is for OWL Class:
@@ -221,7 +237,8 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
                     Set<OWLNamedIndividual> instancesOfEquivalentClass = reasoner.getInstances(expression, true).getFlattened();
                     if (instancesOfEquivalentClass.contains(individual)) return Boolean.TRUE;
                 }
-                catch(Exception ignored){
+                catch(Exception e){
+                    logger.info("No Equivalent class contains individual.");
                 }
             }
         }
@@ -261,8 +278,8 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
         return axiomSet.stream()
                 .map(HasClassesInSignature::getClassesInSignature)
                 .map(
-                        (c) -> c.stream()
-                                .map(cls -> (OWLClassExpression) cls)
+                        c -> c.stream()
+                                .map(OWLClassExpression.class::cast)
                                 .map(e -> reasoner.getSuperClasses(e, false).getFlattened())
                                 .reduce(new HashSet<>(), EntailmentVisitor::reduceSets)
                 ).reduce(

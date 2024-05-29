@@ -18,6 +18,11 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
         this.ontology = ontology;
     }
 
+    /**
+     * Calls an EntailmentVisitor to visit the axiom which has to be checked.
+     * @param owlAxiom The axiom
+     * @return boolean representing whether the axiom is entailed
+     */
     @Override
     public boolean isEntailed(OWLAxiom owlAxiom) {
         if(ontology.getAxioms().contains(owlAxiom)) return true;
@@ -25,6 +30,11 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
 
     }
 
+    /**
+     * Checks for a set of axioms, whether they are entailed.
+     * @param set The set of axioms to be tested
+     * @return Optional Set of axioms which have been entailed.
+     */
     @Override
     public Optional<Set<OWLAxiom>> isEntailed(Set<? extends OWLAxiom> set) {
         Set<OWLAxiom> entailedAxioms = new HashSet<>();
@@ -33,7 +43,7 @@ public class SimpleEntailmentChecker implements EntailmentChecker {
                 entailedAxioms.add(ax);
                 continue;
             }
-            if(ax.accept(new EntailmentVisitor(ontology, reasoner))){
+            if(Boolean.TRUE.equals(ax.accept(new EntailmentVisitor(ontology, reasoner)))){
                 entailedAxioms.add(ax);
             }
         }

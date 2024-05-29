@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.vsonnier/hppcrt/0.7.5/62ddbac53e3d718ee391994d31802ad18b701dac/hppcrt-0.7.5.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.vsonnier/hppcrt/0.7.5/50bc74e1462defe706c816a9e187540fffbb9d35/hppcrt-0.7.5-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

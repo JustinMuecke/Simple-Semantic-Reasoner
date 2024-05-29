@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-binary/4.2.0/2beaa0a9d8dbc32e2a40e945b961706b9c43d798/rdf4j-rio-binary-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-binary/4.2.0/dd4135fb371a4143f8a78574dd12596815f03882/rdf4j-rio-binary-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

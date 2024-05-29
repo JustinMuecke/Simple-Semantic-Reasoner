@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-protobuf/1.15.1/6386e5c36640f2f18563d7a855553c11a272b353/grpc-protobuf-1.15.1.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-protobuf/1.15.1/a148092c90463891c46c1b0e0ee51159d988ff62/grpc-protobuf-1.15.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

@@ -3,13 +3,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
-import org.semanticweb.owlapi.reasoner.impl.DefaultNodeSet;
-import org.semanticweb.owlapi.reasoner.impl.OWLNamedIndividualNodeSet;
 import reasoner.Reasoner;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class GetInstancesTest {
+class GetInstancesTest {
 
     private static final String FILEPATH = "src/test/resources/PaNET.owl";
     private static Reasoner reasoner;
@@ -34,13 +32,13 @@ public class GetInstancesTest {
 
 
     @Test
-    public void singleClass(){
+    void singleClass(){
         OWLClass cl1 = factory.getOWLClass(IOR + "PaNET00001");
         NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(cl1, false);
         assertEquals(4,individuals.getNodes().size());
     }
     @Test
-    public void intersectingClasses(){
+    void intersectingClasses(){
         OWLClass cl1 = factory.getOWLClass(IOR + "PaNET00001");
         OWLClass cl2 = factory.getOWLClass(IOR + "PaNET00002");
         OWLClassExpression intersectionOfClasses = factory.getOWLObjectIntersectionOf(cl1, cl2);
@@ -49,7 +47,7 @@ public class GetInstancesTest {
         assertEquals(3,individuals.getNodes().size());
     }
     @Test
-    public void unionClasses(){
+    void unionClasses(){
         OWLClass cl1 = factory.getOWLClass(IOR + "PaNET01029");
         OWLClass cl2 = factory.getOWLClass(IOR + "PaNET01322");
         OWLClassExpression unionOfClasses = factory.getOWLObjectUnionOf(cl1, cl2);
@@ -58,14 +56,6 @@ public class GetInstancesTest {
         assertEquals(2,individuals.getNodes().size());
     }
 
-    @Test
-    public void childlessPersons(){
-        DefaultNodeSet<OWLNamedIndividual> expected = new OWLNamedIndividualNodeSet();
-        OWLObjectComplementOf childless = factory.getOWLObjectComplementOf(
-                factory.getOWLObjectSomeValuesFrom(factory.getOWLObjectProperty(IOR + "#hasChild"), factory.getOWLClass(IOR + "#Child"))
-        );
-        NodeSet<OWLNamedIndividual> childlessPersons = reasoner.getInstances(childless);
 
-    }
 
 }

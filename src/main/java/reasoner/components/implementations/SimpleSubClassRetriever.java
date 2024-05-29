@@ -10,7 +10,6 @@ import reasoner.components.SubClassRetriever;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class SimpleSubClassRetriever implements SubClassRetriever {
 
@@ -31,7 +30,7 @@ public class SimpleSubClassRetriever implements SubClassRetriever {
      */
     @Override
     public NodeSet<OWLClass> getSubClasses(OWLClassExpression owlClassExpression, boolean onlyDirectSubClasses) {
-
+        logger.info("Getting Sub Classes for {}", owlClassExpression);
         Set<OWLClassExpression> nextLevelSubClasses = new HashSet<>();
         Set<OWLSubClassOfAxiom> axioms = new HashSet<>();
         DefaultNodeSet<OWLClass> result = new OWLClassNodeSet();
@@ -53,10 +52,8 @@ public class SimpleSubClassRetriever implements SubClassRetriever {
      */
     private void getSubClassAxioms(Set<OWLClassExpression> nextLevelSubClasses, Set<OWLSubClassOfAxiom> axioms) {
         for(OWLClassExpression ce : nextLevelSubClasses){
-            //axioms.addAll(ontology.getSubClassAxiomsForSuperClass(ce));
             Set<OWLSubClassOfAxiom> subClassOfAxioms = ontology.getAxioms(AxiomType.SUBCLASS_OF);
             for(var axiom : subClassOfAxioms){
-                logger.debug(axiom.toString());
                 if(axiom.getSuperClass().equals(ce)){
                     axioms.add(axiom);
                 }

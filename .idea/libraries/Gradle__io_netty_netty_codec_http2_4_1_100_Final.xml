@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.1.100.Final/cbf1a430ea44dbdedbcde16b185cbb95f28d72c7/netty-codec-http2-4.1.100.Final.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.1.100.Final/7e75598f5e768ef40c6d2b1a0f5a37f5807d3f1c/netty-codec-http2-4.1.100.Final-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

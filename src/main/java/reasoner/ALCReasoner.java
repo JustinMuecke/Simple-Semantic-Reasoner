@@ -2,110 +2,111 @@ package reasoner;
 
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
+import org.semanticweb.owlapi.reasoner.impl.*;
 import org.semanticweb.owlapi.util.Version;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 public interface ALCReasoner extends OWLReasoner {
 
     @Override
     default Node<OWLClass> getTopClassNode() {
-        return null;
+        return new OWLClassNode();
     }
 
     @Override
     default Node<OWLClass> getBottomClassNode() {
-        return null;
+        return new OWLClassNode();
     }
     @Override
     default Node<OWLObjectPropertyExpression> getTopObjectPropertyNode() {
-        return null;
+        return new OWLObjectPropertyNode();
     }
 
     @Override
     default Node<OWLObjectPropertyExpression> getBottomObjectPropertyNode() {
-        return null;
+        return new OWLObjectPropertyNode();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLObjectPropertyExpression> getSubObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
-        return null;
+        return new OWLObjectPropertyNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLObjectPropertyExpression> getSuperObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
-        return null;
+        return new OWLObjectPropertyNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
     default Node<OWLObjectPropertyExpression> getEquivalentObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression) {
-        return null;
+        return new OWLObjectPropertyNode();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLObjectPropertyExpression> getDisjointObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression) {
-        return null;
+        return new OWLObjectPropertyNodeSet();
     }
 
 
     @Override@ParametersAreNonnullByDefault
     default Node<OWLObjectPropertyExpression> getInverseObjectProperties(OWLObjectPropertyExpression owlObjectPropertyExpression) {
-        return null;
+        return new OWLObjectPropertyNode();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLClass> getObjectPropertyDomains(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
-        return null;
+        return new OWLClassNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLClass> getObjectPropertyRanges(OWLObjectPropertyExpression owlObjectPropertyExpression, boolean b) {
-        return null;
+        return new OWLClassNodeSet();
     }
 
     // ____________________________ DATA PROPERTY _________________________________________________
     @Override
     default Node<OWLDataProperty> getTopDataPropertyNode() {
-        return null;
+        return new OWLDataPropertyNode();
     }
 
     @Override
     default Node<OWLDataProperty> getBottomDataPropertyNode() {
-        return null;
+        return new OWLDataPropertyNode();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLDataProperty> getSubDataProperties(OWLDataProperty owlDataProperty, boolean b) {
-        return null;
+        return new OWLDataPropertyNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLDataProperty> getSuperDataProperties(OWLDataProperty owlDataProperty, boolean b) {
-        return null;
+        return new OWLDataPropertyNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
     default Node<OWLDataProperty> getEquivalentDataProperties(OWLDataProperty owlDataProperty) {
-        return null;
+        return new OWLDataPropertyNode();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLDataProperty> getDisjointDataProperties(OWLDataPropertyExpression owlDataPropertyExpression) {
-        return null;
+        return new OWLDataPropertyNodeSet();
     }    @Override    @ParametersAreNonnullByDefault
     default Set<OWLLiteral> getDataPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLDataProperty owlDataProperty) {
-        return null;
+        return new HashSet<>();
     }
     @Override    @ParametersAreNonnullByDefault
     default NodeSet<OWLNamedIndividual> getObjectPropertyValues(OWLNamedIndividual owlNamedIndividual, OWLObjectPropertyExpression owlObjectPropertyExpression) {
-        return null;
+        return new OWLNamedIndividualNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
     default NodeSet<OWLClass> getDataPropertyDomains(OWLDataProperty owlDataProperty, boolean b) {
-        return null;
+        return new OWLClassNodeSet();
     }
 
     @Override@ParametersAreNonnullByDefault
@@ -115,11 +116,11 @@ public interface ALCReasoner extends OWLReasoner {
 
     @Override
     default Version getReasonerVersion() {
-        return null;
+        return new Version(0, 0, 0, 0);
     }
     @Override
     default BufferingMode getBufferingMode() {
-        return null;
+        return BufferingMode.NON_BUFFERING;
     }
     @Override
     default void flush() {
@@ -128,11 +129,11 @@ public interface ALCReasoner extends OWLReasoner {
 
     @Override
     default Set<OWLAxiom> getPendingAxiomAdditions() {
-        return null;
+        return new HashSet<>();
     }
     @Override
     default Set<OWLAxiom> getPendingAxiomRemovals() {
-        return null;
+        return new HashSet<>();
     }
 
     @Override
@@ -145,11 +146,11 @@ public interface ALCReasoner extends OWLReasoner {
     }
     @Override
     default Set<InferenceType> getPrecomputableInferenceTypes() {
-        return null;
+        return new HashSet<>();
     }
     @Override
     default Node<OWLClass> getUnsatisfiableClasses() {
-        return null;
+        return new OWLClassNode();
     }
     @Override
     default long getTimeOut() {
@@ -158,12 +159,12 @@ public interface ALCReasoner extends OWLReasoner {
 
     @Override
     default FreshEntityPolicy getFreshEntityPolicy() {
-        return null;
+        return FreshEntityPolicy.DISALLOW;
     }
 
     @Override
     default IndividualNodeSetPolicy getIndividualNodeSetPolicy() {
-        return null;
+        return IndividualNodeSetPolicy.BY_NAME;
     }
 
     @Override

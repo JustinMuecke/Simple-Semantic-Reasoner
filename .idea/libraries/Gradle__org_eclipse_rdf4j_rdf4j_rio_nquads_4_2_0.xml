@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-nquads/4.2.0/2ecbfc0edaa93d4227af88ab0a11cad634ec9ae2/rdf4j-rio-nquads-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-nquads/4.2.0/1c898a5985178b7d81aa34feb582f445e927ea0d/rdf4j-rio-nquads-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

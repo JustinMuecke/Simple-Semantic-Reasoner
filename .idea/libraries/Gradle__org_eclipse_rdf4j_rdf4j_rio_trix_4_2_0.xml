@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-trix/4.2.0/a915da642e31f04196ce0965e7db1161f2320c43/rdf4j-rio-trix-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-trix/4.2.0/d32238c14df07ab9f45fc5d8603f2f72a0f34618/rdf4j-rio-trix-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
