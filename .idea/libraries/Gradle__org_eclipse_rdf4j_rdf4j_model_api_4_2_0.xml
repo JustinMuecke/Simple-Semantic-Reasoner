@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-model-api/4.2.0/c381b48d4ef9be47f41fa8c8ef8a85268524bcb3/rdf4j-model-api-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-model-api/4.2.0/52c1d440d561666c7516e786b39334a87f018b95/rdf4j-model-api-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

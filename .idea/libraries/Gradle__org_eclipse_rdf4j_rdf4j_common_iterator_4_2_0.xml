@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-common-iterator/4.2.0/7b2e55c0f470748d3c1bf0d04ba0280a43a67bc3/rdf4j-common-iterator-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-common-iterator/4.2.0/5757e7f0e907231d13f2520d25926521b1eec526/rdf4j-common-iterator-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

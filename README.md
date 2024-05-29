@@ -6,6 +6,6 @@ and the basics of the Web Ontology Language (OWL). Additionally, we introduce tw
 Pellet and HermiT. 
 Due to the optimizations of the reasoners they are highly complex and are hard to understand for newcomers in the field. Thus, this works introduces simplifications to the underlying logic by using a less expressive description logic. We present the architecture of a corresponding reasoner along with its options to modify and extend it. We also reflect over problems which may arise by starting one's research in this field.
 ## SolarQube Analysis
-![Static Badge](https://img.shields.io/badge/Maintainability-A-green)![Static Badge](https://img.shields.io/badge/Duplications-2.6%25-green)
-![Static Badge](https://img.shields.io/badge/Reliability-C-yellow)![Static Badge](https://img.shields.io/badge/Coverage-56%25-blue)
+![Static Badge](https://img.shields.io/badge/Maintainability-A-Green)![Static Badge](https://img.shields.io/badge/Duplications-2.6%25-Green)
+![Static Badge](https://img.shields.io/badge/Reliability-A-Green)![Static Badge](https://img.shields.io/badge/Coverage-56%25-blue)
 

@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-apibinding/5.5.0/b35c379d607bb6e2e51d34f079233fd7dbe098de/owlapi-apibinding-5.5.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-apibinding/5.5.0/df1b7836a0fe9a1fd8eb58d092e865c6a92d4f35/owlapi-apibinding-5.5.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

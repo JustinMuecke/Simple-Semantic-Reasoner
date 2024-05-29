@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-turtle/4.2.0/f8dbc239be8f8e25cc18d94f2c7feecf314ada34/rdf4j-rio-turtle-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-turtle/4.2.0/edd662d861a3777770143b8641f067beccd6519b/rdf4j-rio-turtle-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

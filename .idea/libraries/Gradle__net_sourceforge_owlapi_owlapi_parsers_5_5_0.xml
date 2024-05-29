@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.5.0/2185aec2132a670e176a9811f76f35fde7d0393c/owlapi-parsers-5.5.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.owlapi/owlapi-parsers/5.5.0/628828229aa866c4a4a1ef5b9836e3addf1e9f60/owlapi-parsers-5.5.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

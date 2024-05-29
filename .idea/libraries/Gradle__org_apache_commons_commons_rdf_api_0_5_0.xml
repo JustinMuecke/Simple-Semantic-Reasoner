@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-rdf-api/0.5.0/df2d4451dee5b311cb4f51ced214dfaab5838291/commons-rdf-api-0.5.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-rdf-api/0.5.0/2735a136e206408f75507fbf27af1230a99f61b/commons-rdf-api-0.5.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-jsonld/4.2.0/f7bba6a0b611c9e382a0f5344c29d8ceeaa7906b/rdf4j-rio-jsonld-4.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.rdf4j/rdf4j-rio-jsonld/4.2.0/3c0d98b665bf62268c403b7cfcfa7c8ce3dc10d7/rdf4j-rio-jsonld-4.2.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

@@ -5,9 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.semanticweb.owlapi.model.*;
 import reasoner.Reasoner;
 
-import static org.junit.Assert.*;
-
-public class EntailmentTest {
+class EntailmentTest {
     private static final String FILEPATH = "src/test/resources/family_base.owl";
     private static Reasoner reasoner;
     private static OWLDataFactory factory;
@@ -25,7 +23,7 @@ public class EntailmentTest {
 
 
     @Test
-    public void subClassOfAxiom(){
+    void subClassOfAxiom(){
         // Test SubClassInference
         OWLClass female = factory.getOWLClass(IOR + "#Female");
         OWLClass mother = factory.getOWLClass(IOR + "#Mother");
@@ -34,41 +32,17 @@ public class EntailmentTest {
     }
 
     @Test
-    public void classAssertionAxioms(){
-        OWLClass pureGrandParent = factory.getOWLClass(IOR + "#PureGrandParent");
-        OWLClass grandParent = factory.getOWLClass(IOR + "#GrandParent");
-
-
-        OWLNamedIndividual pascal = factory.getOWLNamedIndividual(IOR + "#Pascal");
-        OWLNamedIndividual rolt = factory.getOWLNamedIndividual(IOR + "#Rolt");
-
-
-        System.out.println("Pascal is GrandParent:");
-        System.out.println(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(grandParent, pascal)));
-        System.out.println("Rolt is GrandParent:");
-        System.out.println(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(grandParent, rolt)));
-        System.out.println("Pascal is PureGrandParent:");
-        System.out.println(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(pureGrandParent, pascal)));
-        System.out.println("Rolt is PureGrandParent:");
-        System.out.println(reasoner.isEntailed(factory.getOWLClassAssertionAxiom(pureGrandParent, rolt)));
-    }
-
-    @Test
-    public void hannaIsMother(){
+    void hannaIsMother(){
         OWLNamedIndividual hanna = factory.getOWLNamedIndividual(IOR + "#Hanna");
         OWLClass mother = factory.getOWLClass(IOR + "#Mother");
-        System.out.println(ontology.getAxioms());
-        System.out.println(ontology.getClassAssertionAxioms(hanna));
-
-
-        System.out.println((
+        Assertions.assertTrue((
                 reasoner.isEntailed(
                     factory.getOWLClassAssertionAxiom(mother, hanna)
                 )
         ));
     }
     @Test
-    public void justinIsParent(){
+    void justinIsParent(){
         OWLNamedIndividual justin = factory.getOWLNamedIndividual(IOR + "#Justin");
         OWLClass parent = factory.getOWLClass(IOR + "#Parent");
         System.out.println(ontology.getClassAssertionAxioms(justin));
@@ -80,7 +54,7 @@ public class EntailmentTest {
         );
     }
     @Test
-    public void justinIsFather(){
+    void justinIsFather(){
         OWLNamedIndividual justin = factory.getOWLNamedIndividual(IOR + "#Justin");
         OWLClass father = factory.getOWLClass(IOR + "#Father");
         OWLClass parent = factory.getOWLClass(IOR + "#Parent");
@@ -96,5 +70,50 @@ public class EntailmentTest {
         Assertions.assertTrue(reasoner.isEntailed(
                 factory.getOWLClassAssertionAxiom(father, justin)
         ));
+    }
+
+    @Test
+    void declarationAxiomTest(){
+        Assertions.assertTrue(reasoner.isEntailed(
+                factory.getOWLDeclarationAxiom(
+                        factory.getOWLNamedIndividual(IOR + "#Frank")
+                )
+        ));
+    }
+
+    @Test
+    void equivalentClassesAxiomTest(){
+        Assertions.assertFalse(
+                reasoner.isEntailed(
+                        factory.getOWLEquivalentClassesAxiom(
+                                factory.getOWLClass(IOR + "#Parent"),
+                                factory.getOWLClass(IOR + "#Male")
+                        )
+                )
+        );
+    }
+
+    @Test
+    void disjointClassesAxiomTest(){
+        Assertions.assertTrue(
+                reasoner.isEntailed(
+                        factory.getOWLDisjointClassesAxiom(
+                                factory.getOWLClass(IOR+ "#Mother"),
+                                factory.getOWLClass(IOR + "#Father")
+                        )
+                )
+        );
+    }
+    @Test
+    void propertyTest(){
+        Assertions.assertTrue(
+                reasoner.isEntailed(
+                        factory.getOWLObjectPropertyAssertionAxiom(
+                                factory.getOWLObjectProperty(IOR + "#hasAncestor"),
+                                factory.getOWLNamedIndividual(IOR + "#Annika"),
+                                factory.getOWLNamedIndividual(IOR + "#Rolt")
+                                )
+                        )
+                );
     }
 }

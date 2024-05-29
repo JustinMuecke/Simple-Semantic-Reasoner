@@ -9,17 +9,14 @@ import java.util.Optional;
 import java.util.Set;
 
 public class EntailmentCheckerConsistency implements EntailmentChecker {
-    private ALCReasoner reasoner;
 
-    public EntailmentCheckerConsistency(ALCReasoner reasoner, OWLOntology ontology) {
-        this.reasoner = reasoner;
-        this.ontology = ontology;
-    }
+    /*
+    Empty because we dont need to instantiate it with values to show exchange ability of modules
+     */
+    public EntailmentCheckerConsistency(ALCReasoner reasoner, OWLOntology ontology) {}
 
-    private OWLOntology ontology;
     @Override
     public boolean isEntailed(OWLAxiom owlAxiom) {
-
         return false;
     }
 
