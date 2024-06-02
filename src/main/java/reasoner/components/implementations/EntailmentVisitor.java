@@ -220,7 +220,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     }
 
     /**
-     * Finds all equivalent classes for a OWLClass axiom. If the individual in question is instance of any
+     * Finds all equivalent classes for a OWLClass axiom. If the individual in question is instance
      * of the equivalent classes, it is also instance of the class in question.
      * @param ontology underlying ontology used by the reasoner.
      * @param axiomClass Class expression representing a single class.
