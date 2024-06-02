@@ -1,6 +1,6 @@
 # java 
 
-## filemanager
+## file manager
 Contains the FileReader interface as well as the Reader class which implements it.
 
 

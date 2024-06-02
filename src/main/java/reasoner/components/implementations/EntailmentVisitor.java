@@ -64,7 +64,7 @@ public class EntailmentVisitor implements OWLAxiomVisitorEx<Boolean> {
     }
 
     /**
-     * Two classes can be defined as disjoint of their extensions have no intersection
+     * Two classes can be defined as disjoint if their extensions have no intersection
      * @param axiom Axiom which is supposed to be entailed.
      * @return Boolean representing whether the axiom is entailed.
      */
